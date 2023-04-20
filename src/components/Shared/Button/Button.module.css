@@ -1,0 +1,32 @@
+.unbutton{
+    border: none;
+    background: none;
+    padding: 18px 47px;
+    text-transform: uppercase;
+    color: var(--white);
+    cursor: pointer;
+}
+.a{
+    padding: 18px 47px;
+    text-transform: uppercase;
+    color: var(--white);
+    cursor: pointer;
+    background-color: var(--black);
+}
+
+.black{
+    background-color: var(--black);
+}
+
+.red{
+    background-color: var(--accent-red);
+}
+
+@media (max-width: 700px) {
+    .unbutton {
+        padding: 12px 38px;
+    }
+    .black {
+        background-color: var(--accent-red);
+    }
+}

@@ -1,0 +1,207 @@
+.modal {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+    height: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    margin-block: 150px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.heading svg {
+    cursor: pointer;
+}
+
+.input_group {
+    margin-bottom: 120px;
+}
+
+.input_group input {
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid var(--grey);
+    font-size: 18px;
+    display: block;
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.input_services {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.textarea {
+    margin-top: 50px;
+}
+
+.textarea textarea {
+    margin-top: 50px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border: 1px solid var(--grey);
+    font-size: 18px;
+    display: block;
+    width: 70%;
+    padding: 10px;
+    min-height: 187px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.files_input {
+    position: relative;
+    max-width: 170px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.files_input input {
+    position: relative;
+    max-width: 170px;
+    height: 32px;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.files_input input::-webkit-file-upload-button {
+    background-color: none;
+    border: none;
+    cursor: pointer;
+}
+
+.upload_btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload_btn i {
+    background-color: var(--accent-red);
+    padding: 8px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload_btn p {
+    color: var(--grey);
+    font-size: 14px;
+}
+
+.agreement {
+    margin-block: 40px;
+}
+
+.red_checkbox {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.red_checkbox input {
+    display: none;
+}
+
+.red_checkbox div {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    border: 1px solid var(--accent-red);
+}
+
+.red_checkbox input:checked+div {
+    background-color: var(--accent-red);
+}
+
+.file i {
+    background-color: var(--accent-red);
+    padding: 8px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.file {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 15px;
+    margin-block: 20px;
+}
+
+.file_description p:first-child {
+    font-size: 14px;
+}
+
+.file_description p:last-child {
+    font-size: 10px;
+    color: var(--grey);
+    margin-top: 5px;
+}
+
+@media (max-width: 700px) {
+    .modal {
+        grid-template-columns: auto;
+        margin-top: 30px;
+        margin-bottom: 60px;
+    }
+
+    .modal h3:first-child {
+        margin-bottom: 30px;
+    }
+
+    .heading {
+        margin-bottom: 30px;
+    }
+
+    .heading svg {
+        width: 16px;
+        height: 16px;
+        margin-top: -30px;
+    }
+
+    .input_group input {
+        font-size: 14px;
+    }
+
+    .input_group {
+        margin-bottom: 60px;
+    }
+
+    .input_services {
+        margin-bottom: 60px;
+    }
+
+    .checkbox_text {
+        width: 100%;
+        padding-block: 30px;
+    }
+
+    .textarea textarea {
+        width: 100%;
+        font-size: 14px;
+    }
+
+}

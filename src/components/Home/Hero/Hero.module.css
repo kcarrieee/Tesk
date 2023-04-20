@@ -1,0 +1,113 @@
+.hero {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 100px;
+    margin-bottom: 230px;
+
+}
+
+.main {
+    width: 70%;
+    margin-inline: auto;
+    color: #BCBCBC;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    font-family: 'Golos Text';
+
+    @media (max-width: 700px) {
+        font-size: var(--text-size-sm);
+    }
+}
+
+.main .black_span {
+    color: black;
+}
+
+.main span {
+    display: block;
+}
+
+.hero_img {
+    width: 100%;
+    min-height: 600px;
+    background-image: url('../../../assets/images/main.png');
+    margin-top: 100px;
+    background-size: cover;
+
+}
+
+.subtitle {
+    position: absolute;
+    top: 6px;
+    left: -12em;
+}
+
+.link {
+    display: none;
+}
+
+.mobile {
+    display: none;
+}
+
+.main {
+    overflow: hidden;
+}
+
+.lineParent {
+    overflow: hidden;
+    transform: translate(0, 200px);
+}
+
+@media (max-width: 700px) {
+    .hero {
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
+
+    .mobile {
+        color: var(--grey);
+        font-size: 16px;
+
+    }
+
+    .mobile span {
+        color: black;
+        display: block;
+    }
+
+    .hero_img {
+        margin-top: 0;
+        min-height: 220px;
+        margin-top: 25px;
+        margin-bottom: 40px;
+    }
+
+    .link {
+        display: block;
+        font-size: 16px;
+        color: var(--grey);
+        margin-bottom: 40px;
+    }
+
+    .subtitle {
+        position: static;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .main {
+        text-indent: 0;
+        display: none;
+    }
+
+
+    .mobile {
+        display: block;
+    }
+}

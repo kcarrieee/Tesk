@@ -1,0 +1,31 @@
+.main {
+    width: 70%;
+    margin-inline: auto;
+    color: #BCBCBC;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    font-family: 'Golos Text';
+
+    @media (max-width: 700px) {
+        font-size: var(--text-size-sm);
+    }
+}
+
+.main .black_span {
+    color: black;
+}
+
+.main span {
+    display: block;
+}
+
+.main {
+    overflow: hidden;
+}
+
+.lineParent {
+    overflow: hidden;
+    transform: translate(0, 200px);
+}

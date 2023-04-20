@@ -1,0 +1,45 @@
+.h1 {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    font-family: 'Golos Text';
+}
+
+.h2 {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Golos Text';
+}
+
+.h3 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Golos Text';
+}
+
+.p {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    font-family: 'Golos Text';
+}
+
+
+
+.text_gray {
+    color: var(--grey);
+}
+
+@media (max-width: 700px) {
+    .p, .h1, .h2 {
+        font-size: var(--text-size-sm);
+    }
+
+    .h3 {
+        font-size: 16px;
+    }
+}
