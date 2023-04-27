@@ -46,17 +46,38 @@ ul {
   list-style: none;
 }
 
-@media (max-width: 700px) {
-  body {
-    font-size: var(--text-size-sm);
-  }
-}
+
 
  html {
    overscroll-behavior: contain;
-   height: 100%;
 
    @media (prefers-reduced-motion: no-preference) {
      scroll-behavior: smooth;
+   }
+ }
+
+ .input_group input {
+   border: none;
+   outline: none;
+   background: transparent;
+   border: inherit;
+   border-bottom: 1px solid var(--grey);
+   font-size: 18px;
+   display: block;
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 40px;
+   -webkit-appearance: none;
+   border-radius: 0;
+ }
+
+ @media (max-width: 700px) {
+   body {
+     font-size: var(--text-size-sm);
+   }
+
+   .input_group input {
+     font-size: 14px;
+     width: 100%;
    }
  }

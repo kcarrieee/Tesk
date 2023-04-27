@@ -17,8 +17,8 @@ const AboutPage = () => {
         greytext3=""/>
         </div>
         <div className={styles.grid}>
-            <div>
-                <Text tag='p' color='gray'>О приложении</Text>
+            <div className={styles.grid__aboutapp}>
+                <Text tag='h3' color='gray'>О приложении</Text>
             </div>
             <div>
                 <Text tag='h3'>Работайте как вам удобно в приложении Tesk. 
@@ -31,19 +31,19 @@ const AboutPage = () => {
                 </div>
             </div>
         </div>
-        <div className={styles.about_image}>
-            <img src={image} alt="dashboard" />
+        <div className={styles.about_image} style={{backgroundImage:`url(${image})`}}>
+            {/* <img src={image} alt="dashboard" /> */}
         </div>
         <div  className={styles.grid}>
                 <div className={styles.grid__maintext}>
                     <div onClick={() => setActivetab('docs')} className={ activeTab === 'docs' ? `${styles.active}` : ''}>
-                    <Text tag='p'>Документация</Text>
+                    <Text tag='h3'>Документация</Text>
                     </div>
                     <div onClick={() => setActivetab('project')} className={ activeTab === 'project' ? `${styles.active}` : ''}>
-                    <Text tag='p' >Обзор проекта</Text>
+                    <Text tag='h3' >Обзор проекта</Text>
                     </div>
                     <div onClick={() => setActivetab('task')} className={ activeTab === 'task' ? `${styles.active}` : ''}>
-                    <Text tag='p'>Обзор задачи</Text>
+                    <Text tag='h3'>Обзор задачи</Text>
                     </div>
                 </div>
                 <div>

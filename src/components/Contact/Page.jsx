@@ -7,7 +7,7 @@ const Page = () => {
   return (
     <section className={`container ${styles.section}`}> 
     <div className={styles.contact_adress}>
-      <Text tag='p' color='gray'>Электронный адрес</Text>
+      <Text tag='h3' color='gray' className={styles.adress_title}>Электронный адрес</Text>
       <div className={styles.contact_adress_list}>
         <ul>
           <li><Text tag='h3'>tesk@gmail.ru</Text></li>

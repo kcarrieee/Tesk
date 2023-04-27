@@ -325,7 +325,7 @@ header {
             color: rgb(62, 62, 62);
             display: flex;
             justify-content: center;
-            width: 100%;
+            width: 90%;
         }
         
         &_links {
@@ -343,19 +343,17 @@ header {
         li {
             display: flex;
             justify-content: center;
-            width: 100% !important;
-            // margin-bottom: 30vh;
+            width: 90% !important;
         }
     }
          .menu_links {
             display: grid;
             grid-template-columns: auto;
-            //  grid-template-rows: 60% 40% !important;
-            height: 100% !important;
+            height: 100vh !important;
             width: 100% !important;
             position: relative;
             top: 25vh !important;
-            gap: 20% !important;
+            gap: 15vh !important;
     
              &_nav {
                 display: flex;

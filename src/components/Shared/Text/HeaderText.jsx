@@ -1,5 +1,5 @@
 import React,{ useEffect } from 'react';
-import styles from './HeaderText.module.css';
+import styles from './HeaderText.module.scss';
 import gsap from 'gsap';
 
 const HeaderText = ({blacktext, greytext1, greytext2, greytext3}) => {
@@ -17,7 +17,8 @@ const HeaderText = ({blacktext, greytext1, greytext2, greytext3}) => {
 
   return (
     <h1 className={styles.main}  id="main-text">
-        <span className={`${styles.black_span} ${styles.lineParent}`}> {blacktext} </span> 
+        <span className={`${styles.black_span} ${styles.lineParent}`}> 
+         {blacktext} </span> 
         <span className={styles.lineParent }>
           {greytext1}
           </span>

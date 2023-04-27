@@ -8,8 +8,9 @@
     line-height: 150%;
     font-family: 'Golos Text';
 
-    @media (max-width: 700px) {
-        font-size: var(--text-size-sm);
+    @media screen and (max-width: 700px) {
+        font-size: 16px;
+        width: 100%;
     }
 }
 
@@ -19,6 +20,7 @@
 
 .main span {
     display: block;
+
 }
 
 .main {

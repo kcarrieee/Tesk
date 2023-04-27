@@ -3,6 +3,7 @@ import Text from '../../Shared/Text/Text';
 import styles from './Modal.module.css';
 import Plus from './Plus.svg';
 import FileSvg from './File.svg';
+import Button from '../../Shared/Button/Button';
 // import { services } from './ServicesList';
 
 
@@ -61,11 +62,10 @@ const Modal = () => {
   return (
     <>
         <section className={styles.modal}>
-        <Text tag='p' color='gray'>Обратная связь</Text>
+        <Text tag='h3' color='gray'>Обратная связь</Text>
         <form onSubmit={onSubmit}>
           <div className={styles.heading}>
             <Text tag='h3' color='black'>Tesk поможет вам в этом.</Text>
-            {/* <Text tag='h3' color='black'>Обязательные поля:</Text> */}
           </div>
           <div className={styles.input_group}>
             <input 
@@ -95,26 +95,6 @@ const Modal = () => {
                 value={email}
                 onChange={onMutate}/>
           </div>
-            {/* <Text tag='h3' color='black'>Выберите услугу:</Text>
-            <div className={styles.input_services}>
-            {services.map((service, i) => (
-               <label 
-                className={styles.checkbox}
-                key={service.id}
-                >
-                <input 
-                  type="checkbox"
-                  value={service.text}
-                  onChange={handleCheck}
-                  id={`${i}`}
-                  />
-                <Text tag='p' color='black' className={styles.checkbox_text}>
-                  {service.text}
-                </Text>
-              </label>
-            ))}
-            </div> */}
-         
             <Text tag='h3' color='black'>Дополнительная информация:</Text>
             <div className={styles.textarea}>
                <textarea
@@ -163,10 +143,7 @@ const Modal = () => {
                   <Text tag='p' color='black'>Я принимаю пользовательское соглашение</Text>
                 </label>
               </div>
-            {/* <Button color='red' type='submit'>
-              Отправить
-            </Button> */}
-            <button>send</button>
+            <Button type='submit' color='black'>отправить</Button>
         </form>
       </section>
     </>

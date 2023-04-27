@@ -16,10 +16,10 @@
 }
 
 .item div {
-    background: #E4E4E4;
     width: 100%;
     min-height: 500px;
     margin-bottom: 10px;
+    background-size: cover;
 }
 
 .img {
@@ -31,12 +31,21 @@
     .item div {
         min-height: 400px;
     }
-}
-
-@media (max-width: 850px) {
 
     .projects {
         grid-template-columns: auto;
+    }
+    .grid {
+        margin-top: 30px;
+    }
+  
+}
+
+@media (max-width: 800px) {
+
+    .projects {
+        grid-template-columns: auto;
+        margin-block: 80px;
     }
 
     .grid {
@@ -45,15 +54,15 @@
     }
 
     .item div {
-        min-height: 200px;
+        min-height: 260px;
     }
 
     .img {
-        margin-top: 0px;
+        margin-top: 20px;
     }
 
-    .item:nth-last-child(-n+2) {
-        display: none;
-    }
+    // .item:nth-last-child(-n+2) {
+    //     display: none;
+    // }
 
 }

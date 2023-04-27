@@ -56,7 +56,7 @@ function GalleryItem({
      <div></div>
         <div className='gallery_item'>
             <div className='gallery_info'>
-                <Text tag='h1'>{title}</Text>
+                <Text tag='h3'>{title}</Text>
                 <Text tag='p'>{subtitle}</Text>
             </div>
             <div className='gallery_image'

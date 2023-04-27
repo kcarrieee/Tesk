@@ -1,28 +1,28 @@
 import React from 'react';
 import styles from './Footer.module.scss';
 import Text from '../Text/Text';
-// import { navLinks } from '../Navbar/Links';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer} data-scroll-section>
+    <footer className={styles.footer}>
       <div className={styles.footer_wrapper}>
         <div className={styles.footer_col}>
           <Text tag='h3'>Обретите <br /> спокойствие <br /> с Tesk</Text>
           <ul>
-            <li> Возможности</li>
-            <li> О приложении</li>
-            <li> Контакты</li>
+            <li> <Link to='/'> Возможности </Link></li>
+            <li> <Link to='/about'> О приложении </Link></li>
+            <li><Link to='/contact'> Контакты </Link></li>
           </ul>
           <ul>
-            <li> Пользовательское соглашение</li>
-            <li> Обработка персональных данных</li>
+            <li> <Link to='/'> Пользовательское соглашение </Link></li>
+            <li><Link to='/'>  Обработка персональных данных </Link></li>
           </ul>
         </div>
         <div className={styles.footer_col2}>
           <p className={styles.footer_col2_copy}>© 2023 Tesk</p>
-          <div><p>8 (954) xxx xx xx</p>
+          <div>
+          <p>8 (954) xxx xx xx</p>
           <p>tesk@gmail.ru</p>
           <p>supporttesk@gmail.ru</p></div>
         </div>

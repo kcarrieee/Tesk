@@ -8,12 +8,12 @@
 }
 
 .small_img {
-    height: 189px;
-    width: 134px;
+    height: min-content;
+    width: 11%;
 }
 
 .big_img {
-    width: 270px;
+    width: 20vw;
 }
 
 .second_img {
@@ -27,18 +27,28 @@
 
 .green_section {
     background: #38875C;
-    
+}
+
+.text {
+    width: 84%;
 }
 .green_section .section {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 30% 70%;
     padding-block: 120px;
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
     padding-right: 20px;
     padding-left: 20px;
+    gap: 5vw;
 
+}
+.accordion_image {
+    width: 100%;
+    img {
+        width: 90%;
+    }
 }
 
 
@@ -46,14 +56,13 @@
     margin-bottom: 20px;
 }
 .text_content {
-    // padding-top: 30px;
     width: 90%;
 }
 .title h3 {
     color:white;
     cursor: pointer;
     margin-bottom: 30px;
-    transition: all 0.6s ease;
+    transition: all 0.1s ;
 }
 .text_content {
     color:white;
@@ -62,12 +71,10 @@
 .content {
     max-height: 0;
     overflow: hidden;
-    transition: all 0.6s ease;
 }
 .titleInactive {
-    color:#1D5A39;
+    color:#154F2F;
     margin-bottom: 30px;
-    transition: all 0.6s ease;
     cursor: pointer;
 }
 
@@ -76,18 +83,62 @@
     max-height: 1000px;
     transition: all 0.6s ease;
 }
-@media (max-width: 700px) {
+.link {
+    color: black;
+    transition: color 0.5s ease;
+    margin-bottom: 40px;
+    h3 {
+        margin-bottom: 20px;
+    }
+    &:hover {
+        color: rgb(100, 100, 100)
+    }
+}
+
+@media (max-width: 860px) {
     .grid {
         grid-template-columns: auto;
         margin-bottom: 40px;
     }
-
+    .green_section .section {
+        grid-template-columns: auto;
+        padding-block: 80px;
+        .accordion_image img {
+            width: 100%;
+        }
+    }
+    .text {
+        width: 100%;
+    }
     .grid h3:first-child {
         margin-bottom: 20px;
     }
 
     .green_section {
         background-color: #38875C;
+    }
+    .second_img {
+        display: none;
+    }
+    .big_img {
+        width: 100%;
+    }
+    .layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+        width: 100%;
+        gap: 10px;
+        margin-top: 50px;
+        margin-bottom: 80px;
+    }
+    .small_img {
+        height: 35%;
+        width: 100%;
+        aspect-ratio: 2/1;
+        margin-top: 80%;
+    }
+    .mobile {
+        margin-top: -30px;
     }
 
 }
