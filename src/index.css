@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Golos Text', sans-serif;
+}
+
+:root {
+  --black: #000;
+  --white: #FFFFFF;
+  --grey: #A7A7A7;
+  --gray-md: #E7E7E7;
+  --text-footer: #828282;
+  --grey-light: #F2F2F2;
+  --accent-red: #38875C;
+  --h2-size: 24px;
+  --text-size: 16px;
+  --text-size-sm: 14px;
+}
+
+body {
+  color: var(--black);
+  font-size: var(--text-size);
+}
+
+a {
+  text-decoration: none;
+}
+
+.containerr {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+
+
+html {
+  overscroll-behavior: contain;
+
+
+}
+
+.input_group input {
+  border: none;
+  outline: none;
+  background: transparent;
+  border: inherit;
+  border-bottom: 1px solid var(--grey);
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  /* margin-bottom: 40px; */
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.margin-input {
+  margin-bottom: 40px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: white;
+}
+
+.input_group input:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #A7A7A7 !important;
+}
+
+.add_btn {
+  background: #131313;
+  border-radius: 32px;
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  padding: 13px 20px;
+}
+
+.textArea {
+  min-height: 10vh;
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size: var(--text-size-sm);
+  }
+
+  .textArea {
+    min-height: 30vh;
+  }
+
+  .input_group input {
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+.top-12 {
+  margin-top: 110px;
+}
+
+.editor-shell {
+  border: 1px solid #d4d5d9;
+  border-radius: 10px !important;
+  min-height: 20vh;
+}
+
+.toolbar {
+  border-radius: 10px !important;
+}
+
+.editor-container {
+  border-radius: 10px !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

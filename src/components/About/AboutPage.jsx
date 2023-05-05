@@ -8,7 +8,7 @@ const AboutPage = () => {
     const [activeTab, setActivetab] = useState('docs');
 
   return (
-    <section className={`container ${styles.about_page}`}>
+    <section className={`containerr ${styles.about_page}`}>
         <div>
         <HeaderText
         blacktext="От задачи к масштабному проекту"

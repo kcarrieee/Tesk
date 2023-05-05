@@ -4,10 +4,6 @@ import styles from './Modal.module.css';
 import Plus from './Plus.svg';
 import FileSvg from './File.svg';
 import Button from '../../Shared/Button/Button';
-// import { services } from './ServicesList';
-
-
-
 
 const Modal = () => {
   const [files, setFiles] = useState([]);

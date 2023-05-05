@@ -5,7 +5,7 @@ import Modal from './Modal/Modal';
 
 const Page = () => {
   return (
-    <section className={`container ${styles.section}`}> 
+    <section className={`containerr ${styles.section}`}> 
     <div className={styles.contact_adress}>
       <Text tag='h3' color='gray' className={styles.adress_title}>Электронный адрес</Text>
       <div className={styles.contact_adress_list}>

@@ -38,7 +38,7 @@ const LogIn = () => {
       
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
       if(userCredential.user){
-        navigate('/dashbord')
+        navigate('/dashboard')
       }
     } catch(error){
       console.log(error)
@@ -46,7 +46,7 @@ const LogIn = () => {
     }
   }
   return (
-     <section className={`container ${styles.section}`}>
+     <section className={`containerr ${styles.section}`}>
       <div>
         <Text tag='h1'>Войти</Text>
         <OAuth/>
@@ -56,7 +56,8 @@ const LogIn = () => {
                 type='text' 
                 required
                 id='email'
-                autoComplete='off'
+                className='margin-input focus:ring-0'
+                autoComplete="false"
                 placeholder='E-mail' 
                 value={email} 
                 onChange={onChange}
@@ -66,7 +67,8 @@ const LogIn = () => {
                     type={showPassword ? 'text': 'password'}
                     required
                     id='password'
-                    autoComplete="new-password"
+                    autoComplete="off"
+                    className='margin-input focus:ring-0'
                     placeholder='Пароль'
                     value={password}
                     onChange={onChange}

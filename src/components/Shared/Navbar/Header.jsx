@@ -7,13 +7,12 @@ import styles from './Navbar.module.scss';
 
 const Header = () => {
 
-  // State of our Menu
   const [state, setState] = useState({
     initial: false,
     clicked: null,
     menuName: "Menu"
   });
-  // State of our button
+
   const [disabled, setDisabled] = useState(false);
   let link1 = useRef(null);
   let link2 = useRef(null);
@@ -58,7 +57,7 @@ const Header = () => {
   };
 
   return (
-    <header data-scroll-section>
+    <header >
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.innerheader}>
@@ -72,17 +71,17 @@ const Header = () => {
             </div>
             <div className={styles.menu}>
               <button disabled={disabled} onClick={handleMenu}>
-                {/* {state.menuName} */}
                 <svg width="32" height="11" viewBox="0 0 32 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                 className={`${styles.close_menu} ${state.clicked === true && styles.closed}`}>
+                 className={`${styles.close_menu} ${state.clicked === true && styles.closed}`}
+                 >
                   <path d="M1 1H31" stroke="black" stroke-linecap="round"
                   className={`${styles.line} ${state.clicked === true && styles.line1_active}`}/>
                   <path className={`${styles.line} ${state.clicked === true && styles.line2_active}`} d="M1 10H31" stroke="black" stroke-linecap="round"/>
                 </svg>
               </button>
-              <Link to="/" className={`${styles.button__mimas} ${styles.button} ${styles.button_register}`} ref={el => (link1 = el)}>
+              <Link to="/register" className={`${styles.button__mimas} ${styles.button} ${styles.button_register}`} ref={el => (link1 = el)}>
                <span>регистрация</span></Link>
-              <Link to="/" className={`${styles.button__mimas__green} ${styles.button}`} ref={el => (link2 = el)}><span>вход</span></Link>
+              <Link to="/login" className={`${styles.button__mimas__green} ${styles.button}`} ref={el => (link2 = el)}><span>вход</span></Link>
             </div>
           </div>
         </div>

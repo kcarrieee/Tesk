@@ -54,7 +54,7 @@ const Register = () => {
       FormDataCopy.timestamp = serverTimestamp()
       await setDoc(doc(db, 'users' , user.uid), FormDataCopy)
 
-      navigate('/dashbord')
+      navigate('/dashboard')
       
     } catch (error) {
        console.log(error)
@@ -66,12 +66,13 @@ const Register = () => {
 
 
   return (
-    <section className={`container ${styles.section}`}>
+    <section className={`containerr ${styles.section}`}>
       <form autoComplete="off" onSubmit={onSubmitForm}>
         <Text tag='h1'>Создать аккаунт</Text>
         <OAuth/>
        <div className='input_group'>
             <input 
+              className='margin-input focus:ring-0'
                 type='text' 
                 required
                 id='name'
@@ -81,6 +82,7 @@ const Register = () => {
                 onChange={onChange}
                 />
             <input 
+            className='margin-input focus:ring-0'
                 type='text' 
                 required
                 id='username'
@@ -91,6 +93,7 @@ const Register = () => {
                 />
                 
             <input 
+            className='margin-input focus:ring-0'
                 type='text' 
                 required
                 id='email'
@@ -103,6 +106,7 @@ const Register = () => {
                    <input 
                     type={showPassword ? 'text': 'password'}
                     required
+                    className='margin-input focus:ring-0'
                     id='password'
                     autoComplete="new-password"
                     placeholder='Пароль' 

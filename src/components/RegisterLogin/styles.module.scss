@@ -3,6 +3,15 @@
     grid-template-columns: 33% 68%;
     margin-block: 60px;
     gap: 15%;
+    width: 100%;
+}
+.forgot_password {
+    h1, p {
+        margin-bottom: 30px;
+    }
+    .btn {
+        margin-top: 30px;
+    }
 }
 
 .btn_google {

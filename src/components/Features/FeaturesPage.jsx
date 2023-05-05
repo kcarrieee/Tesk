@@ -42,7 +42,7 @@ const FeaturesPage = () => {
     }
   return (
     <>
-    <section className='container'>
+    <section className='containerr'>
         <div className={styles.layout}>
             <img src={photo1} alt="small business"  className={`${styles.small_img} ${styles.first_img} ${styles.mobile}`}/>
             <img src={photo2} alt="freelance" className={`${styles.small_img} ${styles.second_img}`}/>
@@ -97,7 +97,7 @@ const FeaturesPage = () => {
           </div>
     </section>
     <Projects/>
-    <div className='container'>
+    <div className='containerr'>
     <div className={styles.grid}>
             <Text tag='h3' color='gray'>Ресурсы</Text>
             <a href='https://www.atlassian.com/ru/work-management/project-management/project-planning/project-plan' className={styles.link} target="_blank" rel="noreferrer" >

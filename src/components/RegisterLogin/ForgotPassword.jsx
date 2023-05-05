@@ -25,8 +25,8 @@ const ForgotPassword = () => {
     }
   }
   return (
-      <section className={`container ${styles.section}`}>
-      <form onSubmit={onSubmit}>
+      <section className={`containerr ${styles.section}`}>
+      <form onSubmit={onSubmit} className={styles.forgot_password}>
         <Text tag='h1'>Забыли пароль?</Text>
         <Text tag='p'>Письмо с подтверждением прийдет на почту, создайте новый пароль использую ссылку в письме.</Text>
        <div className='input_group'>
@@ -35,6 +35,7 @@ const ForgotPassword = () => {
                 required
                 id='email'
                 autoComplete='off'
+                className='focus:ring-0'
                 placeholder='Электронная почта'
                 value={email}
                 onChange={onChange} 
@@ -43,11 +44,12 @@ const ForgotPassword = () => {
           <button className={styles.btn}>сбросить пароль</button>
           <p className={styles.desc_link}><Link to='/login'>Войти</Link></p>
       </form>
-      <div className={styles.spline}>
-         {/* <Spline
+      <div></div>
+      {/* <div className={styles.spline}>
+         <Spline
         scene="https://prod.spline.design/LAiSjKcbfixSS8qo/scene.splinecode"
-      /> */}
-      </div>
+      />
+      </div> */}
     </section>
   )
 }

@@ -1,0 +1,38 @@
+.app {
+    width: 100%;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 98px 1fr;
+    grid-template-rows: 60px 1fr;
+    overflow: hidden;
+
+    @media screen and (max-width:980px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 1fr;
+        background-color: #F7F7F8;
+        overflow: scroll;
+        height: 100%;
+    }
+}
+
+.main__container {
+    background: #F7F7F8;
+    min-height: 100vh;
+    padding-inline: 19px;
+    position: relative;
+    overflow-y: scroll;
+
+}
+
+.large__addBtn {
+    position: fixed;
+    cursor: pointer;
+    bottom: 30px;
+    right: 30px;
+    border: none;
+    background: none;
+    outline: none;
+    background: #000000;
+    padding: 28px 30px;
+    border-radius: 100px;
+}
