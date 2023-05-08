@@ -1,3 +1,4 @@
+
 const date = new Date();
 let today = date.getDate();
 let month = date.getMonth() + 1;
@@ -11,6 +12,7 @@ export const options = {
 	clearBtn: false,
 	maxDate: new Date("2030-01-01"),
 	minDate: new Date("1950-01-01"),
+	weekDays:  ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
 	theme: {
 		background: "bg-white",
 		todayBtn: "",

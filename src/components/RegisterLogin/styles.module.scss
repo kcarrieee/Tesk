@@ -86,11 +86,12 @@
     }
 }
 
-@media (max-width: 890px) {
+@media (max-width: 960px) {
     .section {
         grid-template-columns: 1fr;
         margin-block: 40px;
         text-align: center;
+        min-height: 60vh;
     }
     .btn_google {
         background: none;

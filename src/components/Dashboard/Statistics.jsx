@@ -1,9 +1,9 @@
 import React from 'react';
-import FilterSearch from './Main/FilterSearch';
 import MainSidebar from './Main/MainSidebar';
 import styles from './Main/style.module.scss';
 import Text from '../Shared/Text/Text';
 import { AreaChart, XAxis, YAxis, Tooltip, Area,ResponsiveContainer  } from 'recharts';
+import  Badge from '../Shared/Badges/Badge';
 
 const data = [
   {name: 'Январь', new: 4, done: 2, amt: 30},
@@ -57,10 +57,43 @@ const Statistics = () => {
                       </div>
                       
                       <div className={styles.project_stats}>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        <div className={styles.project_single_stat}>
+                        <Badge type='new'/>
+                        <div>
+                          <span className={styles.percent}>33%</span>
+                          <h3>
+                            новых <br />
+                            10
+                          </h3>
+                        </div>
+                        </div>
+                        <div className={styles.project_single_stat}><Badge type='process'/>
+                        <div>
+                          <span className={styles.percent}>33%</span>
+                          <h3>
+                            в процессе <br />
+                            10
+                          </h3>
+                        </div>
+                        </div>
+                        <div className={styles.project_single_stat}><Badge type='done'/>
+                        <div>
+                        <span className={styles.percent}>33%</span>
+                        <h3>
+                          завершенных <br />
+                          10
+                        </h3>
+                        </div>
+                        </div>
+                        <div className={styles.project_single_stat}><Badge type='archive'/>
+                        <div>
+                        <span className={styles.percent}>33%</span>
+                        <h3>
+                          в архиве<br />
+                          10
+                        </h3>
+                        </div>
+                        </div>
                       </div>
                     </div>
                     <div className={styles.chart}>

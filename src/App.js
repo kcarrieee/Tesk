@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './components/Shared/Routes/PrivateRoute';
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AddProject from "./pages/AddProject";
+import NotFound from "./pages/NotFound";
 
 
 
@@ -28,7 +29,7 @@ function App() {
     <>
      <BrowserRouter>
      <ToastContainer
-       position="top-right"
+        position="top-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -37,6 +38,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        icon={false} 
     />
       <Routes>
         <Route path="/" element={<Main/>}/>
@@ -46,6 +48,7 @@ function App() {
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
+         <Route path="/*" element={<NotFound/>} />
         <Route path="/profile" element={<PrivateRoute/>}>
           <Route path="/profile" element={<Profile/>} />
         </Route>

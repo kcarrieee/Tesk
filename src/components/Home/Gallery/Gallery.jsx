@@ -108,7 +108,7 @@ export default function Gallery({ src }) {
 
           {images.map((image, index) => (
             <GalleryItem
-              key={src}
+              key={`${index}1`}
               index={index}
               {...image}
               updateActiveImage={handleUpdateActiveImage}

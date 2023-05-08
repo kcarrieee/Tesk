@@ -1,134 +1,88 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './style.module.scss';
-import { useState } from 'react';
-import Datepicker from "tailwind-datepicker-react";
-import { options } from './Options';
 import { Tooltip } from 'flowbite-react';
 import Select from "react-select";
 import { useNavigate } from 'react-router-dom';
 import { useCollection } from '../../../hooks/useCollection';
 import { useAuthContext } from "../../../hooks/useAuthContext";
 // import { useFirestore } from "../../../hooks/useFirestore";
-import { serverTimestamp, getDocs, collection } from 'firebase/firestore';
+import { addDoc, serverTimestamp, getDocs, collection } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
 // import { toast } from 'react-toastify';
 import { getAuth } from "firebase/auth";
 import question  from './icons/QuestionMark.svg';
+import { Picker, Picker2 } from './DatePicker';
+import { toast } from 'react-toastify';
+import Spinner from '../../Shared/Preloader/Spinner';
 
 
-const Picker = () => {
-	const [show, setShow] = useState(false);
-
-	const handleChange = (selectedDate) => {
-		console.log(selectedDate)
-	}
-	const handleClose = (state) => {
-		setShow(state)
-	}
-	return (
-		<div>
-			<Datepicker 
-            options={options} onChange={handleChange} show={show} setShow={handleClose} />
-		</div>
-	)
-}
 
 const AddProjectPage = () => {
-  
-    const [theme, setTheme] = useState(0);
-    const [projectForm, setProjectForm] = useState({
-        name: '',
-        startDate: '',
-        dueDate: '',
-        details:'',
-        status: 'Разработка',
-        theme,
-        users: [],
-        links: [],
-        tags:[]
-    })
 
-    const { name, tags, startDate, dueDate, details, status, links} = projectForm;
-
-     const onChange = (e) => {
-        setProjectForm((prevState)=>(
-        {...prevState,
-        [e.target.id]: e.target.value,
-        }))
-    }
     const auth = getAuth();
-    const navigate = useNavigate();
-    // const { addDocument, response } = useFirestore("projects");
-    const { documents } = useCollection("users");
-
-    
-
+    const user = auth.currentUser;
+    const [loading, setLoading] = useState(false);
+    const [activeTheme, setActiveTheme] = useState(0);
+    const [startDate, setStart] = useState(null);
+    const [dueDate, setEnd] = useState(null);
+    const [name, setName] = useState('');
+    const [details, setDetails] = useState('');
+    const [status, setStatus] = useState('new');
     const [users, setUsers] = useState([]);
-
-    const { user } = useAuthContext();
-
+    const [links, setLinks] = useState(null);
+    const [tags, setTags] = useState(null);
     const [assignedUsers, setAssignedUsers] = useState([]);
     const [formError, setFormError] = useState(null);
+    const navigate = useNavigate();
 
+    
     useEffect(() => {
-        const fetchInfo = async ()=> {
+        const fetchInfo = async () => {
 
         const usersRef = collection(db, 'users')
         const docsUsers = await getDocs(usersRef)
+        let usersArr = []
 
-        if (docsUsers) {
-                    const options = [...docsUsers].map((user) => {
-                        return { value: user.name, label: user.displayName };
+        docsUsers.forEach((doc) => {
+          return usersArr.push({
+            data: doc.data(),})
+        })
+
+        if (usersArr) {
+                    const options = [...usersArr].map((user) => {
+                        return { value: user.data, label: user.data.name };
                     });
                     setUsers(options);
                 }
         }
 
-        fetchInfo()
-        console.log(users)
+        fetchInfo();
     }, [])
 
-        // const fetchInfo = async ()=> {
-        // const userRef = collection(db, 'users');
-          
-
-        //     const docSnap = await get(userRef);
-        //     const data = docSnap.data();
-
-        //     // if (data) {
-        //     //     const options = data.map((user) => {
-        //     //         return { value: user, label: user.displayName };
-        //     //     });
-        //     //     setUsers(options);
-        //     // }
-        //     console.log(data)
-        //     }
-
-        //     fetchInfo();
-            
-            
-                
     
-//   }, []);
-
    const handleSubmit = async (e) => {
     e.preventDefault();
+    
 
     if (!name) {
-      setFormError("Введите название проекта");
+      setFormError("введите название проекта");
       return;
     }
     if (!links) {
-      setFormError("Введите ссылки");
+      setFormError("введите ссылки");
+      return;
+    }
+    if (!tags) {
+      setFormError("введите тэги");
       return;
     }
 
     if (assignedUsers.length < 1) {
-      setFormError("Добавьте участников");
+      setFormError("добавьте участников");
       return;
     }
-
     setFormError(null);
+    setLoading(true);
 
     const createdBy = {
       displayName: user.displayName,
@@ -138,28 +92,40 @@ const AddProjectPage = () => {
 
     const assignedUsersList = assignedUsers.map((user) => {
       return {
-        displayName: user.value.displayName,
-        photoURL: user.value.photoURL,
-        id: user.value.id,
+        displayName: user.value.name,
+        photoURL: user.value.image,
+        id: user.value.username,
       };
     });
 
+
     const project = {
-      ...projectForm,
+      activeTheme, 
+      startDate, 
+      dueDate, 
+      name,
+      details,
+      status,
+      links,
+      tags,
       timestamp: serverTimestamp(),
       createdBy,
       assignedUsersList,
       tasks: [],
+      isImportant: false,
+      isArchived: false,
     };
 
-    // await addDocument(project);
-    // if (!response.error) {
-    //   navigate("/dashboard");
-    // }
+
+    const docRef = await addDoc(collection(db, 'projects'), project)
+            setLoading(false)
+            toast.success('Проект сохранен')
+            navigate(`/dashboard`)
   };
 
-//   console.log(response);
-
+  if(loading){
+        return <Spinner/>
+    }
 
   return (
     <form className={style.form} onSubmit={handleSubmit}>
@@ -170,20 +136,20 @@ const AddProjectPage = () => {
 			<input 
             id='name'
             value={name} 
-            onChange={onChange}
+            onChange={(e) => setName(e.target.value)}
             className='focus:ring-0' type="text" placeholder='Название проекта' />
 		</div>
         </div>
 		<div className={style.block}>
 			<p>Дата начала:</p>
            <div>
-			<Picker/>
+			<Picker setStart={setStart}/>
 		</div>
 		</div>
 		<div className={style.block}>
 			<p>Дата окончания:</p>
 			<div>
-			<Picker/>
+			<Picker2 setEnd={setEnd}/>
 		</div>
 		</div>
 		<div className={style.block}>
@@ -192,7 +158,7 @@ const AddProjectPage = () => {
            className={`${style.details} focus:ring-0`} 
            value={details}
            id='details'
-           onChange={onChange}
+           onChange={(e) => setDetails(e.target.value)}
            ></textarea>
 		</div>
 		</div>
@@ -214,7 +180,7 @@ const AddProjectPage = () => {
                         id="status"
                         name="status"
                         value={status}
-                        onChange={onChange}
+                        onChange={(e) => setStatus(e.target.value)}
                         autoComplete="off"
                         className="focus:ring-0 mt-1 block w-1/2 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-black  sm:text-sm"
                       >
@@ -229,8 +195,8 @@ const AddProjectPage = () => {
                     <div className={style.tags}>
                         {['дизайн','разработка','бизнес','образование','повседневные дела','другое'].map((item, i) => (
                             <div key={i}
-                            className={theme === i ? style.active : ''}
-                            onClick={() => setTheme(i)}
+                            className={activeTheme === i ? style.active : ''}
+                            onClick={() => setActiveTheme(i)}
                             >{item}</div>
                         ))}
                     </div>
@@ -238,7 +204,7 @@ const AddProjectPage = () => {
                 <div className={style.block}>
                     <div className={style.heading}>
                         <h3>Ссылки</h3> 
-                        <Tooltip  content="Разделите ссылки запятой" style="light" animation="duration-500" >
+                        <Tooltip  content="Разделите ссылки запятой" animation="duration-500" >
                             <span>
                               <img src={question} alt="question" />
                             </span>
@@ -246,13 +212,13 @@ const AddProjectPage = () => {
                     </div>
                    
                         <div className='input_group'>
-                          <input type="text" id='links' className='focus:ring-0 w-full' value={links} onChange={onChange} placeholder='https://www.google.com'/>
+                          <input type="text" id='links' className='focus:ring-0 w-full' value={links} onChange={(e) => setLinks(e.target.value)} placeholder='https://www.google.com'/>
                           </div>
                 </div>
                  <div className={style.block}>
                     <div className={style.heading}>
                         <h3>Тэги</h3> 
-                        <Tooltip  content="Разделите тэги запятой" style="light" animation="duration-500" >
+                        <Tooltip  content="Разделите тэги запятой"  animation="duration-500" >
                             <span>
                               <img src={question} alt="question" />
                             </span>
@@ -260,7 +226,7 @@ const AddProjectPage = () => {
                     </div>
                    
                         <div className='input_group'>
-                          <input type="text" id='tags' className='focus:ring-0 w-full' value={tags} onChange={onChange} placeholder='дизайн, разработка логотипа'/>
+                          <input type="text" id='tags' className='focus:ring-0 w-full' value={tags} onChange={(e) => setTags(e.target.value)} placeholder='дизайн, разработка логотипа'/>
                           </div>
                 </div>
                 <button className='add_btn'>создать проект</button>

@@ -1,22 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './style.module.scss';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { db } from '../../../firebase.config';
+import Spinner from '../../Shared/Preloader/Spinner';
 import { ReactComponent as Heart} from './icons/heart.svg';
 import { ReactComponent as Edit} from './icons/edit.svg';
 import { ReactComponent as Delete} from './icons/trash.svg';
 import Badge from '../../Shared/Badges/Badge';
 import Tasks from './Tasks';
+import split from '../../../utils/StringtoArr';
+
 
 const Project = () => {
+    const [project, setProject] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate()
+    const params = useParams()
+    const auth = getAuth();
+    console.warn(project)
+
+
+    // const tagsArray = split(project.tags)
+    // const linksArray = split(project.links)
+    
+    // if(links !== null) console.log(split(links)); //Функция делит на массив links
+
+    useEffect(() => {
+        const fetchListing = async () => {
+            const docRef = doc(db,'projects', params.id)
+            const docSnap = await getDoc(docRef)
+
+            if (docSnap.exists()) {
+                setProject(docSnap.data())
+                setLoading(false)
+            }
+
+        }
+
+        fetchListing()
+
+    },[navigate, params.id])
+
+    if (loading) {
+        return <Spinner/>
+    }
+    const themes = ["дизайн", "разработка" ,"бизнес", "образование" ,"повседневные дела", "другое"]
   return (
     <div className={styles.projectPage_wrapper}>
         <div className={styles.projectPage_header}>
             <div className={styles.projectPage_header_main}>
                 <div className={styles.heading}>
-                <h1>Дизайн проект для студии макияжа</h1> 
-                <Badge type='new'/>
+                <h1>{project.name}</h1> 
+                <Badge type={project.status}/>
                 </div>
                 <div className={styles.heading_desc}>
-                    <p>Тематика: <span>дизайн</span></p>
+                    <p>Тематика: <span>
+                        { project.activeTheme === 0 ? themes[0] : null }
+                        { project.activeTheme === 1 ? themes[1] : null }
+                        { project.activeTheme === 2 ? themes[2] : null }
+                        { project.activeTheme === 3 ? themes[3]: null }
+                        { project.activeTheme === 4 ? themes[4] : null }
+                        { project.activeTheme === 5 ? themes[5] : null }
+                        </span></p>
                     <p className={styles.heading_avatar}> Участники: 
                         <span>
                             <div class="flex -space-x-3.5">
@@ -41,30 +89,26 @@ const Project = () => {
             <div className={styles.projectPage_content_col}>
                 <div>
                 <h2>Описание</h2>
-                <p>Для интерьера студии перманентного макияжа мы специально разграничили пространство стеклянными и реечными перегородками. Стеклянная перегородка отделяет кабинет владелицы салона, где она проводит обучение, а реечные перегородки — общий зал, где работают мастера, от зоны входа.
-                Во время разработки проекта будет разработан план помещения и 3d модель. После будет разбивка пространства на функциональные зоны. 
-                Будет применен комплекс приемов и дизайнерских идей, направленных на создание отдельных функциональных участков внутри одного помещения.
-                </p>
+                <p>{project.details}</p>
                 </div>
                 <div>
                     <h2>Ссылки</h2>
-                    <ul className={styles.links}>
-                        <li> <a href="#">project123.figma.com </a></li>
-                        <li> <a href="#">project123.figma.com </a></li>
-                    </ul>
+                    {/* <ul className={styles.links}>
+                         {linksArray.map((item, i) => {
+                            return  <li key={i}> <a href={item} >{item}</a></li>
+                        })}
+                    </ul> */}
                 </div>
                 <div>
                     <h2>Тэги</h2>
-                    <div className={styles.tags}>
-                        <p>design</p>
-                        <p>помещение</p>
-                        <p>разработка</p>
-                        <p>моделирование</p>
-                        <p>архитетура</p>
-                    </div>
+                    {/* <div className={styles.tags}>
+                        {tagsArray.map((item, i) => {
+                            return  <p key={i}>{item}</p>
+                        })}
+                    </div> */}
                 </div>
             </div>
-            <Tasks/>
+            <Tasks />
         </div>
     </div>
   )

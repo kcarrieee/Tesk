@@ -9,6 +9,7 @@
     }
     @media screen and (max-width: 960px) {
         grid-template-columns: 1fr;
+        margin-top: 20px;
     }
 }
 
@@ -74,7 +75,6 @@
     grid-template-columns: repeat(auto-fit, minmax(327px, 1fr));
     width: 100%;
     gap: 20px;
-    padding-inline: 10px;
     padding-top: 5px;
     margin-bottom: 60px;
 
@@ -178,17 +178,32 @@
 
 //stats
 .container_stats {
+    display: grid;
+    grid-template-columns: 60% 40%;
     background: #FFFFFF;
     border: 1px solid #F0F0F0;
     border-radius: 10px;
     width: 100%;
     padding: 30px;
     min-height: 355px;
+    @media screen and (max-width: 850px){
+        grid-template-columns: 50% 50%;
+    }
+    @media screen and (max-width: 680px) {
+        grid-template-columns: auto;
+        min-height:max-content;
+        width: 100%;
+        padding: 20px;
+        gap: 20px;
+    }
     .general {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-height: 355px;
+        @media screen and (max-width: 680px) {
+            min-height: 255px;
+        }
 
         h1 {
             font-style: normal;
@@ -196,13 +211,20 @@
             font-size: 32px;
             line-height: 38px;
             color: #000000;
+            @media screen and (max-width: 680px) {
+                font-size: 26px;
+                line-height: 30px;
+            }
         }
 
         .tasks {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            width: 40%;
             gap: 10px;
+            @media screen and (max-width: 850px) {
+                width: 100%;
+                gap: 5px;
+            }
                 li {
                 font-style: normal;
                 font-weight: 400;
@@ -210,6 +232,50 @@
                 line-height: 14px;
                 color: #535353;
                 margin-top: 15px;
+            }
+        }
+    }
+
+}
+.project_stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+
+    @media screen and (max-width: 850px) {
+        gap: 5px;
+        }
+    span:first-child {
+        margin-left: auto;
+    }
+    .project_single_stat {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 29px;
+        border: 1px solid #AFAFAF;
+        border-radius: 8px;
+        @media screen and (max-width: 850px) {
+            padding: 15px;
+
+        }
+        @media screen and (max-width: 680px) {
+            min-height: 120px;
+        }
+        .percent {
+            font-size: 12px;
+            line-height: 14px;
+            color: #CACACA;
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: #3A3A3A;
+            @media screen and (max-width: 680px) {
+                    font-size: 14px;
+                    line-height: 16px;
             }
         }
     }

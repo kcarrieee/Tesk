@@ -34,7 +34,7 @@ const OAuth = () => {
 
       }
       //navigating back to home
-      navigate('/dashbord')
+      navigate('/dashboard')
       
     } catch (error) {
       toast.error('Не получилось войти, попробуйте снова')
