@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 
 const date = new Date();
 let today = date.getDate();
@@ -20,12 +21,11 @@ export const options = {
 		icons: "",
 		text: "text-sm font-golos",
 		disabledText: "bg-gray-100 font-golos",
-		input: "font-golos bg-white border-gray-300 focus:border-black outline-none",
+		input: "font-golos bg-white border-gray-300 focus:border-black outline-none focus:ring-black",
 		inputIcon: 'fill-gray-400',
 		selected: "bg-black",
 	},
 	icons: {
-		// () => ReactElement | JSX.Element
 		prev: () => <span><svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M5.9837 13.9387L0.909478 7.98096C0.673468 7.70375 0.673468 7.29625 0.909478 7.01904L5.98371 1.06126C6.24442 0.75515 6.70758 0.727775 7.00254 1.00104C7.28058 1.25863 7.30605 1.68964 7.06029 1.97819L2.35738 7.5L7.06029 13.0218C7.30605 13.3104 7.28058 13.7414 7.00254 13.999C6.70758 14.2722 6.24442 14.2448 5.9837 13.9387Z" fill="black"/>
 					</svg>
@@ -37,6 +37,6 @@ export const options = {
 				</span>,
 	},
 	datepickerClassNames: "top-12",
-	defaultDate: new Date(dateString),
+	defaultDate:new Date(dateString),
 	language: "ru",
 }

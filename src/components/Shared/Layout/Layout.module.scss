@@ -5,6 +5,9 @@
     grid-template-columns: 98px 1fr;
     grid-template-rows: 70px 1fr;
     overflow: hidden;
+    @media screen and (max-width: 1500px) {
+        grid-template-columns: 85px 1fr;
+    }
 
     @media screen and (max-width:980px) {
         grid-template-columns: 1fr;

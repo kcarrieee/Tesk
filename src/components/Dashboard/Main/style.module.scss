@@ -12,6 +12,16 @@
         margin-top: 20px;
     }
 }
+.task_desc {
+    margin-block: 5px;
+    font-size: 14px;
+    color:#BCBCBC;
+    width: 70%;
+    @media screen and (max-width: 600px) {
+            width: 100%;
+        }
+
+}
 
 .all_projects {
     display: flex;
@@ -35,14 +45,19 @@
             font-size: 10px;
             line-height: 12px;
             color: #F9F9F9;
-            padding: 6px 9px;
+            width: 24px;
+            height: 25px;
             background-color: #111111;
             border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }
 .projectDropDown {
     list-style: inside;
+    padding-bottom: 10px;
     
     &::marker {
         background: #8A9CAE;
@@ -72,7 +87,8 @@
 
 .project_grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(327px, 1fr));
+    // grid-template-columns: repeat(auto-fit, minmax(327px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
     gap: 20px;
     padding-top: 5px;

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
 import MainSidebar from './Main/MainSidebar';
 import styles from './Main/style.module.scss';
 import Text from '../Shared/Text/Text';
 import { AreaChart, XAxis, YAxis, Tooltip, Area,ResponsiveContainer  } from 'recharts';
 import  Badge from '../Shared/Badges/Badge';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase.config';
+import Spinner from '../Shared/Preloader/Spinner';
 
 const data = [
   {name: 'Январь', new: 4, done: 2, amt: 30},
@@ -37,6 +40,36 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const Statistics = () => {
+  const [loading, setLoading] = useState(true)
+  const [projects, setProjects] = useState(null);
+
+
+   useEffect(() => {
+      const fetchPrj = async () => {
+          const prjRef = collection(db, 'projects')
+          const querySnap = await getDocs(prjRef)
+
+          let prj = []
+
+          querySnap.forEach((doc) => {
+            return prj.push({
+              id: doc.id,
+              data: doc.data(),
+            })
+          })
+
+          setProjects(prj)
+          setLoading(false)
+      }
+
+        fetchPrj();
+        console.log(projects)
+    }, [])
+
+    if (loading) {
+        return <Spinner/>
+    }
+
   return (
     <div>
         <div className={styles.main}>
@@ -44,14 +77,17 @@ const Statistics = () => {
                 <div className={styles.stats}>
                     <div className={styles.container_stats}>
                       <div className={styles.general}>
-                      <h1>0 <br /> Проектов</h1>
+                      <h1> {projects.length}<br /> 
+                        Проекта
+                      </h1>
                       <div>
                         <Text tag='p'>Задачи</Text>
+                         <p className={styles.task_desc}>
+                          в приложении Tesk - это описание того, что будет достигнуто, частные результаты, этапы на пути к цели. 
+                         </p>
                         <ul className={styles.tasks}>
                           <li>Новые - 0</li>
-                          <li>В архиве - 0</li>
-                          <li>В процессе - 0</li>
-                          <li>Завершено - 0</li>
+                          <li>Завершенные - 0</li>
                         </ul>
                       </div>
                       </div>

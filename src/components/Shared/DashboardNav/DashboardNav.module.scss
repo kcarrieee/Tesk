@@ -37,6 +37,9 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    @media screen and (max-width: 1500px){
+        width: 85px;
+    }
 
     &__link {
         width: 71px;
@@ -51,6 +54,10 @@
         transition: all 0.5s ease;
         cursor: pointer;
         margin-bottom: 5px;
+        @media screen and (max-width: 1500px) {
+                width: 68px;
+                height: 68px;
+            }
 
         // svg {
         //     height: 35px;

@@ -3,21 +3,35 @@ import style from './style.module.scss';
 import { Tooltip } from 'flowbite-react';
 import Select from "react-select";
 import { useNavigate } from 'react-router-dom';
-import { useCollection } from '../../../hooks/useCollection';
-import { useAuthContext } from "../../../hooks/useAuthContext";
-// import { useFirestore } from "../../../hooks/useFirestore";
 import { addDoc, serverTimestamp, getDocs, collection } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
-// import { toast } from 'react-toastify';
 import { getAuth } from "firebase/auth";
 import question  from './icons/QuestionMark.svg';
 import { Picker, Picker2 } from './DatePicker';
 import { toast } from 'react-toastify';
 import Spinner from '../../Shared/Preloader/Spinner';
+import split from '../../../utils/StringtoArr';
+import makeAnimated from 'react-select/animated';
 
 
+  const colourStyles = {
+   control: (base, state) => ({
+      ...base,
+      boxShadow: "none",
+      outline: state.isFocused ? 'none': ''
+
+    })
+    ,
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      
+    }
+  }
+  };
 
 const AddProjectPage = () => {
+    const animatedComponents = makeAnimated();
 
     const auth = getAuth();
     const user = auth.currentUser;
@@ -34,6 +48,8 @@ const AddProjectPage = () => {
     const [assignedUsers, setAssignedUsers] = useState([]);
     const [formError, setFormError] = useState(null);
     const navigate = useNavigate();
+
+ 
 
     
     useEffect(() => {
@@ -97,7 +113,8 @@ const AddProjectPage = () => {
         id: user.value.username,
       };
     });
-
+    const linksArr = split(links);
+    const tagsArr = split(tags);
 
     const project = {
       activeTheme, 
@@ -106,8 +123,8 @@ const AddProjectPage = () => {
       name,
       details,
       status,
-      links,
-      tags,
+      links: [...linksArr],
+      tags: [...tagsArr],
       timestamp: serverTimestamp(),
       createdBy,
       assignedUsersList,
@@ -115,6 +132,8 @@ const AddProjectPage = () => {
       isImportant: false,
       isArchived: false,
     };
+
+
 
 
     const docRef = await addDoc(collection(db, 'projects'), project)
@@ -168,10 +187,22 @@ const AddProjectPage = () => {
                     <h3>Участники проекта</h3>
                 </div>
                 <Select
-                    placeholder='Выберите участников'
+                    placeholder={<div className="select-placeholder-text">Выберите участников</div>}
                     options={users}
                     onChange={(option) => setAssignedUsers(option)}
                     isMulti
+                    components={animatedComponents}
+                    styles={colourStyles}
+                     theme={(theme) => ({
+                    ...theme,
+                    border: '1px solid black',
+        
+                    colors: {
+                      ...theme.colors,
+                      primary25: '#eeeff1',
+                      primary: 'black',
+                    },
+                  })}
                 />
                 </div>
             <div className={style.block} >

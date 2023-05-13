@@ -121,7 +121,7 @@ input:focus {
 }
 
 .top-12 {
-  margin-top: 110px;
+  margin-top: 230px;
 }
 
 .editor-shell {
@@ -159,4 +159,85 @@ input:focus {
 
 .Toastify__progress-bar--info {
   background-color: #313131 !important;
+}
+
+.select-placeholder-text {
+  color: rgb(109, 109, 117)
+}
+
+
+.profile_image {
+  position: relative;
+}
+
+.input-file {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+}
+
+.input-file span {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-size: 14px;
+  vertical-align: middle;
+  color: rgb(255 255 255);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 48px;
+  /* background-color: #419152; */
+  background: linear-gradient(0deg, rgba(127, 127, 127, 0.81), rgba(96, 96, 96, 0.81));
+  mix-blend-mode: normal;
+  height: 100px;
+  width: 100px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.input-file input[type=file] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus+span {
+  box-shadow: 0 0 0 0.2rem rgba(206, 206, 206, 0.25);
+}
+
+/* Hover/active */
+.input-file:hover input[type=file]+span {
+  opacity: 1;
+}
+
+.input-file:active span {
+  background-color: #2E703A;
+  opacity: 0;
+}
+
+/* Disabled */
+.input-file input[type=file]:disabled+span {
+  background-color: #eee;
+}
+
+.profileImg_error {
+  color: #F03F28;
+  font-size: 10px;
+  width: 100px;
+  margin-top: 20px;
+}
+
+.profile_image {
+  width: 100px;
 }

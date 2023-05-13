@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import styles from './Navbar.module.scss';
+import bg from './bg.png';
 
 import {
   staggerText,

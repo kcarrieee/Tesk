@@ -15,7 +15,9 @@ export const Picker = ({ setStart }) => {
 	return (
 		<div>
 			<Datepicker 
-            options={options} onChange={handleChange} show={show} setShow={handleClose} />
+            options={options}
+			 onChange={handleChange} show={show} setShow={handleClose}
+			 />
 		</div>
 	)
 }
