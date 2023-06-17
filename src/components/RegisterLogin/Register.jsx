@@ -72,7 +72,7 @@ const Register = () => {
         <OAuth/>
        <div className='input_group'>
             <input 
-              className='margin-input focus:ring-0'
+              className='margin-input focus:ring-0 placeholder-[#A7A7A7]'
                 type='text' 
                 required
                 id='name'
@@ -82,7 +82,7 @@ const Register = () => {
                 onChange={onChange}
                 />
             <input 
-            className='margin-input focus:ring-0'
+            className='margin-input focus:ring-0 placeholder-[#A7A7A7]'
                 type='text' 
                 required
                 id='username'
@@ -93,7 +93,7 @@ const Register = () => {
                 />
                 
             <input 
-            className='margin-input focus:ring-0'
+            className='margin-input focus:ring-0 placeholder-[#A7A7A7]'
                 type='text' 
                 required
                 id='email'
@@ -106,7 +106,7 @@ const Register = () => {
                    <input 
                     type={showPassword ? 'text': 'password'}
                     required
-                    className='margin-input focus:ring-0'
+                    className='margin-input focus:ring-0 placeholder-[#A7A7A7]'
                     id='password'
                     autoComplete="new-password"
                     placeholder='Пароль' 

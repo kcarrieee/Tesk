@@ -43,7 +43,16 @@ const FilterPopUp = ({isopen, setIsopen, sortRef, handleSortSelection, list, sor
      <div className={style.sort} ref={sortRef} >
               <div className={style.sort__label} >
                 <p>Сортировка по: </p>
-                 <span onClick={()=>setIsopen(!isopen)} >{sortType}</span>
+                 <span onClick={()=>setIsopen(!isopen)} >
+                  {sortType ==='0' ?  'дизайн' :  null}
+                  {sortType ==='1' ?  'разработка' :  null}
+                  {sortType ==='2' ?  'бизнес' :  null}
+                  {sortType ==='3' ?  'образование' :  null}
+                  {sortType ==='4' ?  'повседневные' :  null}
+                  {sortType ==='5' ?  'другое' :  null}
+                  {sortType ==='дате' ?  'дате' :  null}
+                  {sortType ==='мои' ?  'мои' :  null}
+                </span>
               </div>
                {isopen &&  
                <motion.div 
@@ -65,6 +74,9 @@ const FilterPopUp = ({isopen, setIsopen, sortRef, handleSortSelection, list, sor
                                 {item ==='0' ?  'дизайн' :  null}
                                 {item ==='1' ?  'разработка' :  null}
                                 {item ==='2' ?  'бизнес' :  null}
+                                {item ==='3' ?  'образование' :  null}
+                                {item ==='4' ?  'повседневные' :  null}
+                                {item ==='5' ?  'другое' :  null}
                                 {item ==='дате' ?  'дате' :  null}
                                 {item ==='мои' ?  'мои' :  null}
                             </motion.li>

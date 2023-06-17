@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
    <>
-   { preloader ? <Preloader/> :(
+   {/* { preloader ? <Preloader/> :( */}
             <>
                <Layout>
                <Hero/>
@@ -43,7 +43,7 @@ const Home = () => {
                <Accordion/>
                </Layout>
             </>
-     )}
+     {/* )} */}
    </>
   );
 }

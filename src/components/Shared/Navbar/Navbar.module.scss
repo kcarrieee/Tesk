@@ -144,7 +144,7 @@ header {
 
     .hamburger_menu {
         display: none;
-        z-index: 5;
+        z-index: 100;
         top: 0;
         left: 0;
         right: 0;
@@ -181,7 +181,7 @@ header {
                     height: 100%;
                     gap: 18vh;
                     position: relative;
-                    top: 30vh;
+                    top: 18vh;
                     @media screen and (max-width:960px) {
                         gap: 30vh;
                     }
@@ -361,7 +361,7 @@ header {
             height: 100vh !important;
             width: 100% !important;
             position: relative;
-            top: 25vh !important;
+            top: 10vh !important;
             gap: 15vh !important;
     
              &_nav {

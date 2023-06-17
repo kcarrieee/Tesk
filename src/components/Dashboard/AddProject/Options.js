@@ -22,7 +22,7 @@ export const options = {
 		text: "text-sm font-golos",
 		disabledText: "bg-gray-100 font-golos",
 		input: "font-golos bg-white border-gray-300 focus:border-black outline-none focus:ring-black",
-		inputIcon: 'fill-gray-400',
+		inputIcon: 'fill-[#A7A7A7]',
 		selected: "bg-black",
 	},
 	icons: {

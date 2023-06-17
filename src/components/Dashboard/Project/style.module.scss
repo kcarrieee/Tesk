@@ -180,6 +180,19 @@
     font-size: 14px;
     line-height: 140%;
     color: #888888;
+    &_done {
+        margin-left: 45px;
+        margin-top: 6px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: #c8c8c8;
+    }
+}
+.disabledInput {
+    cursor: not-allowed !important;
+    opacity: 0.4
 }
 
 .checkbox {

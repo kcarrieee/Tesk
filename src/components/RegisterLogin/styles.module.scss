@@ -85,12 +85,44 @@
         }
     }
 }
+@media (max-width: 980px) {
+    .login_image {
+        display: none;
+    }
 
-@media (max-width: 960px) {
     .section {
         grid-template-columns: 1fr;
         margin-block: 40px;
         text-align: center;
+        width: 70%;
+        min-height: 60vh;
+    }
+    .spline {
+        display: none;
+    }
+    .forgot_password_image {
+        display: none;
+    }
+    .forgot_password {
+        width: 60%;
+        margin-inline: auto;
+    }
+
+}
+
+@media (max-width: 700px) {
+    .forgot_password {
+        width: 100%;
+    }
+    .login_image {
+        display: none;
+    }
+    
+    .section {
+        grid-template-columns: 1fr;
+        margin-block: 40px;
+        text-align: center;
+        width: 100%;
         min-height: 60vh;
     }
     .btn_google {
@@ -124,4 +156,7 @@
         display: none;
     }
 
+}
+.forgot_password {
+    margin-block: 50px;
 }

@@ -11,7 +11,7 @@ const Workflow = () => {
 
         <div className={styles.stages}>
             <div className={styles.block}>
-                <div className={styles.num}>01</div>
+                {/* <div className={styles.num}>01</div> */}
                 <div className={styles.content}>
                     <Text tag='h3' className={styles.subheading}>Планирование проектов</Text>
                     <Text tag='p' >
@@ -20,7 +20,7 @@ const Workflow = () => {
                 </div>
             </div>
             <div className={styles.block}>
-                <div className={styles.num}>02</div>
+                {/* <div className={styles.num}>02</div> */}
                 <div className={styles.content}>
                     <Text tag='h3' className={styles.subheading}>Статистика по проектам</Text>
                     <Text tag='p'>
@@ -29,7 +29,7 @@ const Workflow = () => {
                 </div>
             </div>
             <div className={styles.block}>
-                <div className={styles.num}>03</div>
+                {/* <div className={styles.num}>03</div> */}
                 <div className={styles.content}>
                     <Text tag='h3' className={styles.subheading}>Возможность добавления задачь</Text>
                     <Text tag='p'>
@@ -39,7 +39,7 @@ const Workflow = () => {
                 </div>
             </div>
             <div className={styles.block}>
-                <div className={`${styles.num} ${styles.num_last}`}>04</div>
+                {/* <div className={`${styles.num} ${styles.num_last}`}>04</div> */}
                 <div className={styles.content_last}>
                     <Text tag='h3' className={styles.subheading}>Коллаборация</Text>
                     <Text tag='p'>

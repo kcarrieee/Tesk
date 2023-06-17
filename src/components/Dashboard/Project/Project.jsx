@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import styles from './style.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
@@ -8,18 +9,20 @@ import Spinner from '../../Shared/Preloader/Spinner';
 import { ReactComponent as Heart} from './icons/heart.svg';
 import { ReactComponent as Edit} from './icons/edit.svg';
 import { ReactComponent as Delete} from './icons/trash.svg';
+
 import Badge from '../../Shared/Badges/Badge';
 import Tasks from './Tasks';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { toast } from 'react-toastify';
 import Modal from './Modal';
+import uuid from 'react-uuid';
+
 
 
 const Project = () => {
     const [project, setProject] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isFav, setIsFav] = useState(false);
     const auth = getAuth();
     const user = auth.currentUser;
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,8 +30,12 @@ const Project = () => {
     const navigate = useNavigate()
     const params = useParams()
 
+    
 
+  
+    
 
+    // const len = project?.tasks.length
 
     useEffect(() => {
         
@@ -44,7 +51,9 @@ const Project = () => {
 
         fetchListing()
 
-    },[navigate, params.id, project])
+    },[navigate, params.id])
+
+    
 
 
     const handleUpdate = async () => {
@@ -86,6 +95,8 @@ const Project = () => {
     if (loading) {
         return <Spinner/>
     }
+    
+    
     const themes = ["дизайн", "разработка" ,"бизнес", "образование" ,"повседневные дела", "другое"]
   return (
     <div className={styles.projectPage_wrapper}>
@@ -93,7 +104,7 @@ const Project = () => {
             <div className={styles.projectPage_header_main}>
                 <div className={styles.heading}>
                 <h1>{project.name}</h1> 
-                <Badge type={project.tasks.length !== 0 ? 'process': project.status}/>
+                <Badge type={project.status}/>
                 </div>
                 <div className={styles.heading_desc}>
                     <p>Тематика: <span>
@@ -106,13 +117,13 @@ const Project = () => {
                         </span></p>
                     <p className={styles.heading_avatar}> Участники: 
                         <span>
-                            <div class="flex -space-x-3.5">
+                            <span className="flex -space-x-3.5">
                                 {project.assignedUsersList.map((el, i) => (
-                                    <img key={i} class="w-8 h-8 border-2 border-white rounded-full" src={`${el.photoURL}`} alt="user"/>
+                                    <img key={uuid()} className="w-8 h-8 border-2 border-white rounded-full" src={`${el.photoURL}`} alt="user"/>
                                 ))}
-                                <img class="w-8 h-8 border-2 border-white rounded-full" src={`${project.createdBy.photoURL}`} alt="user"/>
-                                <span class="text-white flex items-center justify-center w-8 h-8 text-xs font-regular bg-black border-2 border-white rounded-full ">{project.assignedUsersList.length + 1}</span>
-                            </div>
+                                <img className="w-8 h-8 border-2 border-white rounded-full" src={`${project.createdBy.photoURL}`} alt="user"/>
+                                <span className="text-white flex items-center justify-center w-8 h-8 text-xs font-regular bg-black border-2 border-white rounded-full ">{project.assignedUsersList.length + 1}</span>
+                            </span>
                         </span>
                     </p>
                     <p>Дата окончания: <span>{format(new Date(project.dueDate.toDate().toDateString()), 'PPPP', { locale: ru })}</span></p>
@@ -142,8 +153,8 @@ const Project = () => {
                 <div>
                     <h2>Ссылки</h2>
                     <ul className={styles.links}>
-                         {project.links.map((item, i) => {
-                            return  <li key={i}><a href={item}>{item}</a></li>
+                         {project.links.map((item) => {
+                            return  <li key={uuid()}><a href={item}>{item}</a></li>
                         })}
                         
                     </ul>
@@ -152,12 +163,12 @@ const Project = () => {
                     <h2>Тэги</h2>
                     <div className={styles.tags}>
                         {project.tags.map((item, i) => {
-                            return  <p key={i}>{item}</p>
+                            return  <p key={uuid()}>{item}</p>
                         })}
                     </div>
                 </div>
             </div>
-            <Tasks tasks={project.tasks} prj={project}/>
+            <Tasks  prj={project}/>
         </div>
     </div>
   )

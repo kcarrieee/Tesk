@@ -15,7 +15,7 @@ import FilterPopUp from './FilterPopUp';
 //       sortTypeProp: 'theme'
 //     },
 //     ];
-export const list = [ 'дате', 'мои', '0', '1', '2'];
+export const list = [ 'дате', 'мои', '0', '1', '2', '3', '4', '5'];
 
 const FilterSearch = ({setSearchValue, searchValue, setCurrentFilter, currentFilter}) => {
     //sort

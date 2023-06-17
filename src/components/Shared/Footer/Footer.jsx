@@ -10,13 +10,13 @@ const Footer = () => {
         <div className={styles.footer_col}>
           <Text tag='h3'>Обретите <br /> спокойствие <br /> с Tesk</Text>
           <ul>
-            <li> <Link to='/'> Возможности </Link></li>
+            <li> <Link to='/opportunities'> Возможности </Link></li>
             <li> <Link to='/about'> О приложении </Link></li>
             <li><Link to='/contact'> Контакты </Link></li>
           </ul>
           <ul>
-            <li> <Link to='/'> Пользовательское соглашение </Link></li>
-            <li><Link to='/'>  Обработка персональных данных </Link></li>
+            <li> <Link to='/privacy'> Пользовательское соглашение </Link></li>
+            <li><Link to='/privacy'> Обработка персональных данных </Link></li>
           </ul>
         </div>
         <div className={styles.footer_col2}>

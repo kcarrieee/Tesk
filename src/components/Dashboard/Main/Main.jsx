@@ -3,11 +3,13 @@ import MainSidebar from './MainSidebar';
 import FilterSearch from './FilterSearch';
 import styles from './style.module.scss';
 import ProjectItem from './ProjectItem/ProjectItem';
-// import { useNavigate } from 'react-router-dom';
+
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
 import Spinner from '../../Shared/Preloader/Spinner';
 import { getAuth } from 'firebase/auth';
+import uuid from 'react-uuid';
+
 
 
 const Main = () => {
@@ -15,9 +17,12 @@ const Main = () => {
   const [projects, setProjects] = useState(null);
   const [searchValue, setSearchValue] = useState('');
   const [currentFilter, setCurrentFilter] = useState("дате");
+  
+  
 
   const auth = getAuth();
   const user = auth.currentUser;
+  
 
 
   useEffect(() => {
@@ -49,8 +54,6 @@ const Main = () => {
    const sortedProjects = projects.filter((document) => {
         switch (currentFilter) {
           case "дате":
-            return true;
-          case "мои":
             let assignedToMe = false;
             document.data.assignedUsersList.forEach((u) => {
               if (user.uid === u.id || user.uid === document.data.createdBy.id) {
@@ -59,9 +62,23 @@ const Main = () => {
             });
 
           return assignedToMe;
+
+          case "мои":
+            let myProjects = false;
+           
+            if (user.uid === document.data.createdBy.id) {
+                myProjects = true;
+            }
+          
+
+          return myProjects;
           case "0":
           case "1":
           case "2":
+          case "3":
+          case "4":
+          case "5":
+
             return document.data.activeTheme == currentFilter;
 
           default:
@@ -71,22 +88,24 @@ const Main = () => {
 
   return (
     <div>
+     
         <FilterSearch 
           searchValue={searchValue} 
           setSearchValue={setSearchValue}
           setCurrentFilter={setCurrentFilter}
           currentFilter={currentFilter}
           />
-        <div className={styles.main}>
-            <MainSidebar/>
-                <div className={styles.project_grid}>
-                  {/* {projects.filter(el => el.data.name.toLowerCase().includes(searchValue.toLowerCase())).map((project) => {
-                    return <ProjectItem project={project}/>
-                  })} */}
-                   {sortedProjects.filter(el => el.data.name.toLowerCase().includes(searchValue.toLowerCase())).map((project) => {
-                    return <ProjectItem project={project}/>
-                  })}
-                </div>
+          <div className={styles.main}>
+              <MainSidebar />
+                  <div className={styles.project_grid}>
+                    {sortedProjects 
+                      ?
+                      sortedProjects.filter(el => el.data.name.toLowerCase().includes(searchValue.toLowerCase())).map((project) => {
+                        return <ProjectItem project={project} key={uuid()}/>
+                      }) 
+                      : <p>Нет проектов</p>
+                  }
+          </div>
         </div>
     </div>
   )

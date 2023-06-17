@@ -68,6 +68,31 @@ html {
   /* margin-bottom: 40px; */
   -webkit-appearance: none;
   border-radius: 0;
+  position: relative;
+}
+
+.input_limit {
+  position: relative;
+}
+
+.input_limit .limit {
+  position: absolute;
+  right: 5px;
+  color: var(--grey);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 5px 5px;
+}
+
+.input_limit .limit_error {
+  position: absolute;
+  right: 5px;
+  color: #F03F28;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 5px 5px;
 }
 
 .margin-input {
@@ -138,9 +163,15 @@ input:focus {
   border-radius: 10px !important;
 }
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+input[type='text']:focus {
+  box-shadow: none;
+}
 
 
 .Toastify__toast {
@@ -162,7 +193,7 @@ input:focus {
 }
 
 .select-placeholder-text {
-  color: rgb(109, 109, 117)
+  color: #A7A7A7
 }
 
 
@@ -240,4 +271,39 @@ input:focus {
 
 .profile_image {
   width: 100px;
+}
+
+input:-webkit-autofill {
+  caret-color: #fff;
+  color: #000000;
+  background: #ffffff;
+  -webkit-text-fill-color: #000000;
+  -webkit-background-clip: text;
+}
+
+.privacy_policy {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 150%;
+  text-align: center;
+  margin-block: 40px;
+}
+
+@media (max-width: 700px) {
+  .privacy_policy {
+    font-family: 'Golos Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 120%;
+    text-align: center;
+    margin-block: 20px;
+  }
+
+}
+
+.privacy_policy_text {
+  margin-bottom: 40px;
 }

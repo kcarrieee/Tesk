@@ -18,8 +18,10 @@ import makeAnimated from 'react-select/animated';
    control: (base, state) => ({
       ...base,
       boxShadow: "none",
-      outline: state.isFocused ? 'none': ''
-
+      outline: state.isFocused && state.isSelected ? 'none' : '',
+      height: 42,
+      borderRadius: 8,
+    
     })
     ,
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -49,9 +51,8 @@ const AddProjectPage = () => {
     const [formError, setFormError] = useState(null);
     const navigate = useNavigate();
 
- 
-
-    
+  
+  
     useEffect(() => {
         const fetchInfo = async () => {
 
@@ -61,12 +62,12 @@ const AddProjectPage = () => {
 
         docsUsers.forEach((doc) => {
           return usersArr.push({
-            data: doc.data(),})
+            data: doc.data(), id: doc.id})
         })
 
         if (usersArr) {
                     const options = [...usersArr].map((user) => {
-                        return { value: user.data, label: user.data.name };
+                        return { value: user.data, label: user.data.name, id: user.id};
                     });
                     setUsers(options);
                 }
@@ -79,22 +80,26 @@ const AddProjectPage = () => {
    const handleSubmit = async (e) => {
     e.preventDefault();
     
-
+    
     if (!name) {
-      setFormError("введите название проекта");
+      setFormError("Введите название проекта");
       return;
     }
     if (!links) {
-      setFormError("введите ссылки");
+      setFormError("Введите ссылки");
       return;
     }
     if (!tags) {
-      setFormError("введите тэги");
+      setFormError("Введите тэги");
+      return;
+    }
+    if (!details) {
+      setFormError("Введите описание проекта");
       return;
     }
 
     if (assignedUsers.length < 1) {
-      setFormError("добавьте участников");
+      setFormError("Добавьте участников");
       return;
     }
     setFormError(null);
@@ -107,10 +112,12 @@ const AddProjectPage = () => {
     };
 
     const assignedUsersList = assignedUsers.map((user) => {
+
       return {
         displayName: user.value.name,
         photoURL: user.value.image,
-        id: user.value.username,
+        username: user.value.username,
+        id: user.id,
       };
     });
     const linksArr = split(links);
@@ -128,7 +135,7 @@ const AddProjectPage = () => {
       timestamp: serverTimestamp(),
       createdBy,
       assignedUsersList,
-      tasks: [],
+      // tasks: [],
       isImportant: false,
       isArchived: false,
     };
@@ -151,12 +158,16 @@ const AddProjectPage = () => {
 		<div>
             <div className={style.block}>
         <h3>Общая информация:</h3>
-		<div className='input_group'>
+		<div className='input_group input_limit'>
 			<input 
+            maxLength={50}
             id='name'
             value={name} 
             onChange={(e) => setName(e.target.value)}
-            className='focus:ring-0' type="text" placeholder='Название проекта' />
+            className='focus:ring-0 placeholder-[#A7A7A7]' 
+            type="text" 
+            placeholder='Название проекта' />
+          <span className={name.length <= 49 ? 'limit' : 'limit_error'} >{name.length}/50</span>
 		</div>
         </div>
 		<div className={style.block}>
@@ -174,7 +185,8 @@ const AddProjectPage = () => {
 		<div className={style.block}>
 		<h3> Описание проекта:</h3>
 		   <textarea
-           className={`${style.details} focus:ring-0`} 
+          placeholder='Расскажите про свой проект'
+           className={`${style.details} focus:ring-0 placeholder-[#A7A7A7]`} 
            value={details}
            id='details'
            onChange={(e) => setDetails(e.target.value)}
@@ -190,13 +202,15 @@ const AddProjectPage = () => {
                     placeholder={<div className="select-placeholder-text">Выберите участников</div>}
                     options={users}
                     onChange={(option) => setAssignedUsers(option)}
+                    className="react-select-container"
+                    classNamePrefix="react-select"
                     isMulti
+                    noOptionsMessage={() => "Больше нет вариантов"}
                     components={animatedComponents}
                     styles={colourStyles}
                      theme={(theme) => ({
                     ...theme,
                     border: '1px solid black',
-        
                     colors: {
                       ...theme.colors,
                       primary25: '#eeeff1',
@@ -235,7 +249,7 @@ const AddProjectPage = () => {
                 <div className={style.block}>
                     <div className={style.heading}>
                         <h3>Ссылки</h3> 
-                        <Tooltip  content="Разделите ссылки запятой" animation="duration-500" >
+                        <Tooltip style="light"  content="Разделите ссылки запятой" animation="duration-500" >
                             <span>
                               <img src={question} alt="question" />
                             </span>
@@ -243,13 +257,13 @@ const AddProjectPage = () => {
                     </div>
                    
                         <div className='input_group'>
-                          <input type="text" id='links' className='focus:ring-0 w-full' value={links} onChange={(e) => setLinks(e.target.value)} placeholder='https://www.google.com'/>
+                          <input type="text" id='links' className='focus:ring-0 w-full placeholder-[#A7A7A7]' value={links} onChange={(e) => setLinks(e.target.value)} placeholder='https://www.google.com, https://figma.com'/>
                           </div>
                 </div>
                  <div className={style.block}>
                     <div className={style.heading}>
                         <h3>Тэги</h3> 
-                        <Tooltip  content="Разделите тэги запятой"  animation="duration-500" >
+                        <Tooltip  style="light" content="Разделите тэги запятой"  animation="duration-500" >
                             <span>
                               <img src={question} alt="question" />
                             </span>
@@ -257,11 +271,11 @@ const AddProjectPage = () => {
                     </div>
                    
                         <div className='input_group'>
-                          <input type="text" id='tags' className='focus:ring-0 w-full' value={tags} onChange={(e) => setTags(e.target.value)} placeholder='дизайн, разработка логотипа'/>
+                          <input type="text" id='tags' className='focus:ring-0 w-full placeholder-[#A7A7A7]' value={tags} onChange={(e) => setTags(e.target.value)} placeholder='дизайн, разработка, логотип'/>
                           </div>
                 </div>
-                <button className='add_btn'>создать проект</button>
-                {formError && <p className="error">{formError}</p>}
+                
+                <button className='add_btn'>создать проект</button> {formError && <span className="text-red-500 text-xs m-2">{formError}</span>}
 		</div>
     </form>
 

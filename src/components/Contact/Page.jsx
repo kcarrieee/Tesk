@@ -2,15 +2,19 @@ import React from 'react';
 import Text from '../Shared/Text/Text';
 import styles from './Contact.module.css';
 import Modal from './Modal/Modal';
-import image from '../../assets/images/iphone.png';
+import HeaderText from '../Shared/Text/HeaderText';
+
 
 const Page = () => {
   return (
     <>
-    <div className='bg-[#F0F1F4] w-full'>
-      <div className={`containerr ${styles.contact_main}`}>
-      <h1>Свяжитесь с нами, <br /> если у Вас есть какие-либо вопросы или предложения.</h1>
-      <img src={image} alt="phones" />
+    <div className='mt-12 mb-12 md:mt-24 md:mb-32 '>
+      <div className={`containerr`}>
+      <HeaderText
+      blacktext='Свяжитесь с нами,'
+      greytext1='если у Вас есть какие-то интересующие'
+      greytext2='вопросы или деловые предложения'
+      />
       </div>
     </div>
     <section className={`containerr ${styles.section}`}> 

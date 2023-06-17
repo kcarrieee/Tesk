@@ -5,6 +5,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase.config';
 import { cubicBezier, motion} from "framer-motion";
 import { Link } from "react-router-dom";
+import { getAuth } from 'firebase/auth';
+
 
 const easing = cubicBezier(.35,.17,.3,.86)
 
@@ -43,6 +45,9 @@ const MainSidebar = () => {
     const [openProjects, setOpenProjects] = useState(false);
     const [openTasks, setOpenTasks] = useState(false);
     const [projects, setProjects] = useState(null);
+    const [tasks, setTasks] = useState(null);
+    
+    console.log(projects)
 
     useEffect(() => {
       const fetchPrj = async () => {
@@ -59,26 +64,37 @@ const MainSidebar = () => {
           })
 
           setProjects(prj)
+          
+      
+         
+          // let t= []
+          // const Ref = collection(db, 'projects', id, 'tasks')
+          
+          // const data = await getDocs(Ref) 
+          // data.forEach((doc) => {
+          //   return t.push({
+          //     data: doc.data(),
+          //   })
+          // })
+          // setTasks(t);
       }
     fetchPrj();
     }, [])
 
-    let tasksLength = [];
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const usersProjects = projects?.filter(document => user.uid === document.data.createdBy.id
+      // (document.data.assignedUsersList.forEach((u) => (user.uid === u.id || user.uid === document.data.createdBy.id)))
+      )
 
-    projects?.map((el,i) => {
-        const len = el.data.tasks
-        return  tasksLength?.push(...len)
-    })
 
-  const tasksArr = tasksLength.filter(el => el.isDone === false)
-  const doneTasksArr = tasksLength.filter(el => el.isDone === true)
 
   return (
     <div className={style.allprj_sidebar}>
         <div className={style.all_projects}>
         <div>
             <h3>Проекты</h3> 
-            <div className={style.num}>{projects?.length === null || 0 ? 0 : projects?.length}</div>
+            <div className={style.num}>{usersProjects?.length === null || 0 ? 0 : usersProjects?.length}</div>
         </div>
             <svg onClick={() => setOpenProjects(!openProjects)}
                     className={openProjects ? style.active : style.svg}
@@ -94,7 +110,7 @@ const MainSidebar = () => {
                 animate='show'
                 exit='hidden'
                 >
-                    {projects?.map((el) => {
+                    {usersProjects?.map((el) => {
                         return <motion.li key={el.id} variants={variantsLi}>
                                     <Link to={`/project/${el.id}`}>
                                     {add3Dots(el?.data?.name, 15)}
@@ -107,7 +123,8 @@ const MainSidebar = () => {
         <div>
             <h3>Задачи</h3> 
             <div className={style.num}>
-            {tasksLength?.length === null || 0 ? "0" : tasksLength?.length}
+            {/* {tasks?.length === null || 0 ? "0" : tasks?.length} */}
+            13
             </div>
         </div>
         <svg onClick={() => setOpenTasks(!openTasks)}
@@ -124,8 +141,8 @@ const MainSidebar = () => {
                 animate='show'
                 exit='hidden'
                 >
-                  <motion.li  variants={variantsLi} >Новые({ tasksLength === 0 || null ? 0 : tasksArr.length})</motion.li>
-                  <motion.li  variants={variantsLi} >Завершенные({ tasksLength === 0 || null ? 0 : doneTasksArr.length})</motion.li>
+                   <motion.li  variants={variantsLi} >Новые(12)</motion.li>
+                  <motion.li  variants={variantsLi} >Завершенные(1)</motion.li> 
             </motion.ul>
         )}
     </div>

@@ -22,6 +22,17 @@
         align-items: center;
     }
 }
+.project_wrapper_skeleton {
+    background: #FFFFFF;
+        box-shadow: 2px 2px 3px 1px rgba(49, 52, 54, 0.1);
+        border-radius: 12px;
+        padding: 0px;
+        width: 100%;
+        transition: border 0.3s ease-in-out;
+        border: 1px solid white;
+        cursor: pointer;
+
+}
 
 .project_content {
     margin-top: 30px;

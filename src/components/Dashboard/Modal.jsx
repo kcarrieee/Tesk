@@ -4,6 +4,7 @@ import Text from '../Shared/Text/Text';
 import { getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 
+
 const Modal = ({setIsModalOpen}) => {
     // Current signed-in user to delete
     const auth = getAuth();

@@ -5,8 +5,7 @@ import Text from '../Shared/Text/Text';
 import { Link } from 'react-router-dom';
 import OAuth from './OAuth';
 import { toast } from 'react-toastify';
-
-// import Spline from '@splinetool/react-spline';
+import image from '../../assets/log.png'
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -56,7 +55,7 @@ const LogIn = () => {
                 type='text' 
                 required
                 id='email'
-                className='margin-input focus:ring-0'
+                className='margin-input focus:ring-0 placeholder-[#A7A7A7]'
                 autoComplete="false"
                 placeholder='E-mail' 
                 value={email} 
@@ -68,7 +67,7 @@ const LogIn = () => {
                     required
                     id='password'
                     autoComplete="off"
-                    className='margin-input focus:ring-0'
+                    className='margin-input focus:ring-0 placeholder-[#A7A7A7]'
                     placeholder='Пароль'
                     value={password}
                     onChange={onChange}
@@ -87,10 +86,8 @@ const LogIn = () => {
           <p className={styles.desc}>Нажимая кнопку «Войти» вы принимаете условия <span> Политики Конфиденциальности </span></p>
           <p className={styles.desc_link}>Есть аккаунт? <Link to='/register'>Зарегетрироваться</Link> </p>
       </div>
-      <div className={styles.spline}>
-         {/* <Spline
-        scene="https://prod.spline.design/LAiSjKcbfixSS8qo/scene.splinecode"
-      /> */}
+      <div className={styles.spline_col}>
+      <img className={styles.login_image} src={image} alt="iphone" width={'90%'} style={{marginTop: 10}}/>
       </div>
     </section>
   )
