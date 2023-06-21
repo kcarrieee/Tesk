@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-// import { TasksContext } from '../../../context/TasksContent';
+import React, { useState, useEffect } from 'react';
 import styles from './style.module.scss';
 import { ReactComponent as Plus} from './icons/plus.svg';
 import { ReactComponent as Close} from './icons/close.svg';
@@ -43,8 +42,10 @@ const Tasks = ({ prj }) => {
     const [taskName, setTaskName] = useState(''); 
     const [selectedTask, setSelectedTask] = useState(null); 
     const [taskDetails, setTaskDetails] = useState(''); 
+    // eslint-disable-next-line
     const [assignedUsers, setAssignedUsers] = useState([]);
     const [taskRes, setTaskRes] = useState(null);
+    // eslint-disable-next-line
     const [loading, setLoading] = useState(false);
     const [formError, setFormError] = useState(null);
     const [ tasks, setTasks ] = useState(null);
@@ -117,9 +118,6 @@ const Tasks = ({ prj }) => {
     }, [params.id])
 
    
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -131,7 +129,6 @@ const Tasks = ({ prj }) => {
             setFormError("введите описание задачи");
             return;
         }
-
 
         setFormError(null);
         setLoading(true);
@@ -158,21 +155,17 @@ const Tasks = ({ prj }) => {
             addDoc(colRef, taskToAdd);
             toast.success('Задача добавлена')
             setIsOpen(false)
-
             setTaskName('')
             setTaskDetails('')
             
         
       } catch (error) {
-        console.log(error)
-        
+        toast.error('Не получилось добавить задачу')
       }
-
     }
    
      
     const handleDone = async () => {
-        
         try {
             const taskRef = doc(db,`projects/${params.id}/tasks/${selectedTask}`);
             await updateDoc(taskRef, {
@@ -198,9 +191,6 @@ const Tasks = ({ prj }) => {
             toast.error('Не получилось удалить')
         }
     }
-    const len = tasks?.length
-    console.log(len)
-    
 
   return (
      <div className={styles.tasks_section}>
@@ -234,7 +224,7 @@ const Tasks = ({ prj }) => {
                                     <span className={task.data.isDone === true ? 'text-[#d9d9d9]': ''}>
                                     {format(new Date(task.data.content.date), 'dd/LL/yyyy', { locale: ru })}
                                     </span>
-                                    <Tooltip style="light" content={task.data.taskManName}>
+                                    <Tooltip content={task.data.taskManName}>
                                     <img className="w-8 h-8 border-2 border-white rounded-full" src={task.data.photoURL} alt="task user"/>
                                     </Tooltip>
                                     {user.uid === prj.createdBy.id && (
@@ -256,7 +246,7 @@ const Tasks = ({ prj }) => {
             className={styles.add_task_form} >
                     <div className={styles.add_task_header}>
                         <h2>Добавить новую задачу в проект</h2>
-                        <span><Close onClick={()=>setIsOpen(false)}/></span>
+                        <span className={styles.add_task_btn}><Close onClick={()=>setIsOpen(false)}/></span>
                     </div>
                     <div className='input_group'>
                         <input

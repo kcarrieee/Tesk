@@ -50,8 +50,18 @@ const Main = () => {
         return <Spinner />
     }
 
+    const sortProjects = projects.filter((document) => {
+            let assignedToMe = false;
+            document.data.assignedUsersList.forEach((u) => {
+              if (user.uid === u.id || user.uid === document.data.createdBy.id) {
+                assignedToMe = true;
+              }
+              return assignedToMe
+            });
+            return assignedToMe
+    });
       
-   const sortedProjects = projects.filter((document) => {
+   const sortedProjects = sortProjects.filter((document) => {
         switch (currentFilter) {
           case "дате":
             let assignedToMe = false;
@@ -79,7 +89,7 @@ const Main = () => {
           case "4":
           case "5":
 
-            return document.data.activeTheme == currentFilter;
+            return document.data.activeTheme.toString() === currentFilter;
 
           default:
             return true;
@@ -105,6 +115,7 @@ const Main = () => {
                       }) 
                       : <p>Нет проектов</p>
                   }
+                  { sortedProjects.length === 0 && (<p>Нет проектов</p>) }
           </div>
         </div>
     </div>

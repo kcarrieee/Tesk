@@ -30,8 +30,6 @@ const ProfilePage = () => {
       });
 
   
-
-  
     const {name, email, username, userInfo, image} = formData;
 
     const navigate = useNavigate();
@@ -53,9 +51,7 @@ const ProfilePage = () => {
         uploadTask.on(
           'state_changed',
           (snapshot) => {
-            // const progress =
-            //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            // console.log('Upload is ' + progress + '% done')
+
             switch (snapshot.state) {
               case 'paused':
                 console.log('Upload is paused')
@@ -96,7 +92,7 @@ const ProfilePage = () => {
         uploadFile();
       }
        
-    },[thumbnail])
+    },[thumbnail, auth.currentUser])
 
     useEffect(() => {
         const fetchInfo = async () => {
@@ -117,7 +113,7 @@ const ProfilePage = () => {
             }
         }
         fetchInfo();
-    }, []);
+    }, [auth.currentUser, auth.currentUser.uid]);
   
 
     const onSubmit = async () => {
@@ -149,13 +145,6 @@ const ProfilePage = () => {
         [e.target.id]:e.target.value
       }))
     }
-    
-
-    // if (loading) {
-    //     return (
-    //         <SkeletonProfile/>
-    //     )
-    // }
     
     const handleFileChnage = (e) => {
 
@@ -189,9 +178,9 @@ const ProfilePage = () => {
             <MainSidebar/>
       <div className='bg-white rounded-xl p-4 mb-40 md:p-10'>
       <div className='flex justify-between gap-4 mb-6 items-start sm:items-center'>
-        <h3 className=' text-lg md:text-2xl'>Здравствуйте, {name} !</h3>
+        <h3 className=' text-md md:text-2xl mt-2'>Здравствуйте, {name} !</h3>
         <div className='flex gap-4 items-center'>
-          <button className='logout' onClick={onLogout}>Выйти</button>
+          <button className='logout text-md' onClick={onLogout} >Выйти</button>
           <button onClick={() => setIsModalOpen(true)}><svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="34.75" height="35.75" rx="17.375" fill="white"/>
             <path d="M23.375 14H12.375C12.2755 14 12.1802 14.0395 12.1098 14.1098C12.0395 14.1802 12 14.2755 12 14.375C12 14.4745 12.0395 14.5698 12.1098 14.6402C12.1802 
@@ -209,16 +198,16 @@ const ProfilePage = () => {
     </div>
 
     {isModalOpen && <Modal setIsModalOpen={setIsModalOpen}/> }
-    <div className='flex gap-4 md:gap-14'>
+    <div className='flex gap-4 md:gap-14 flex-col md:flex-row'>
       <div className='profile_details'>
         <div className='profile_image'>
         {thumbnail ?  
-        <img src={window.URL.createObjectURL(thumbnail)} alt="profile-pic" style={{width:'100px', borderRadius: 100, marginTop:15}}/> 
+        <img src={window.URL.createObjectURL(thumbnail)} alt="profile-pic" style={{width:'100px',height:'100px', borderRadius: 100, marginTop:15,objectFit: 'cover'}}/> 
         : auth.currentUser.photoURL ?
-        <img src={auth.currentUser.photoURL} alt="profile photoURL" style={{width:'100px', borderRadius: 100, marginTop:15}}/>
+        <img src={auth.currentUser.photoURL} alt="profile photoURL" style={{width:'100px',height:'100px', borderRadius: 100, marginTop:15, objectFit: 'cover'}}/>
         :
         image ?
-         <img src={image} alt="profile-pic" style={{width:'100px', borderRadius: 100, marginTop:15}}/>
+         <img src={image} alt="profile-pic" style={{width:'100px',height:'100px', borderRadius: 100, marginTop:15,objectFit: 'cover'}}/>
         :
         <svg  style={{marginTop:15}} width="100" height="100" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="39" cy="39" r="39" fill="#D3D3D3"/>
@@ -272,7 +261,7 @@ const ProfilePage = () => {
         {loading ? <SkeletonProfile/> :
         <form className='flex flex-col gap-6 w-full '>
           <div className='flex flex-col'>
-            <input type="text" id='name' className={!changeDetails ? 'border-0 ring-0 p-1 text-md md:text-xl text-black' : 'focus:ring-black  border-gray-400 rounded-md'}
+            <input type="text" id='name' className={!changeDetails ? 'input-profile border-0 ring-0 p-1 text-md md:text-xl text-black disabled:text-black' : 'input-profile focus:ring-black text-black border-gray-400 rounded-md disabled:text-black'}
             disabled={!changeDetails}
             value={name}
             onChange={onChange}/>
@@ -283,7 +272,7 @@ const ProfilePage = () => {
           </div>
           <div>
           <label htmlFor="userInfo" className='text-md md:text-xl '>Общая информация</label>
-          <textarea type="text" id='userInfo' className={!changeDetails ? 'border-0 ring-0 w-full textArea p-1 text-[#515357]': ' focus:ring-0 focus:border-black border-gray-400 rounded-md mt-2 w-full'}
+          <textarea type="text" id='userInfo' className={!changeDetails ? 'border-0 ring-0 w-full  p-1 text-[#515357]': ' focus:ring-0 focus:border-black border-gray-400 rounded-md mt-2 w-full'}
           disabled={!changeDetails}
           placeholder={'Расскажите про себя'}
           value={userInfo}

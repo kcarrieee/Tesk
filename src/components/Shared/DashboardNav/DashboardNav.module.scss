@@ -216,7 +216,7 @@
     }
 
     .open {
-        position: absolute;
+        position: fixed;
         top: 60px;
         background-color: white;
         border-radius: 10px;
@@ -228,7 +228,7 @@
         display: flex;
         flex-direction: column;
         @media screen and (max-width:980px) {
-          height: 85vh;
+            height: 95vh;
         }
     }
 

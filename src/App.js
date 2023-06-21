@@ -19,6 +19,8 @@ import PrivateRoute from './components/Shared/Routes/PrivateRoute';
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AddProject from "./pages/AddProject";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./utils/ScrollToTop";
+
 
 
 
@@ -28,6 +30,7 @@ function App() {
   return (
     <>
      <BrowserRouter>
+     <ScrollToTop />
      <ToastContainer
         position="top-right"
         autoClose={3000}

@@ -77,7 +77,7 @@ const Statistics = () => {
     const juneDone = usersProjects?.filter(project => format(new Date(project.data.timestamp.toDate().toDateString()), 'MMMM') === "June" &&  project.data.status === 'done')
 
     const julyNew = usersProjects?.filter(project => format(new Date(project.data.timestamp.toDate().toDateString()), 'MMMM') === "July")
-    const julyDone = projects?.filter(project => format(new Date(project.data.timestamp.toDate().toDateString()), 'MMMM') === "July" &&  project.data.status === 'done')
+    const julyDone = usersProjects?.filter(project => format(new Date(project.data.timestamp.toDate().toDateString()), 'MMMM') === "July" &&  project.data.status === 'done')
 
     const augustNew = usersProjects?.filter(project => format(new Date(project.data.timestamp.toDate().toDateString()), 'MMMM') === "August")
     const augustDone = usersProjects?.filter(project => format(new Date(project.data.timestamp.toDate().toDateString()), 'MMMM') === "August" &&  project.data.status === 'done')

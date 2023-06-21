@@ -307,3 +307,8 @@ input:-webkit-autofill {
 .privacy_policy_text {
   margin-bottom: 40px;
 }
+
+.input-profile {
+  -webkit-text-fill-color: #000;
+  opacity: 1;
+}

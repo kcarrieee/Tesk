@@ -41,7 +41,9 @@ const Settings = () => {
         updateExecute(newTimer);
     }
   return (
-        <form>
+    <>
+    <h3 className={style.header}>Метод Pomodoro – это эффективная техника управления временем.<span> Обычно 25 минут занимает работа, а когда время заканчивается, то перерыв 5 минут или более. И так несколько раз.</span>  </h3>
+     <form>
             <div className={style.input_wrapper}>
                 <input name='work' onChange={handleChange} value={newTimer.work}/>
                 <input name='shortbreak' onChange={handleChange} value={newTimer.short}/>
@@ -49,6 +51,8 @@ const Settings = () => {
             </div>
             <button onClick={handleSubmit}>установить таймер</button>
         </form>
+    </>
+       
   )
 }
 

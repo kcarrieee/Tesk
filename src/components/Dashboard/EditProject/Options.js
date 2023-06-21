@@ -1,10 +1,10 @@
-import { format } from 'date-fns';
 
-const date = new Date();
-let today = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear()
-const dateString = `${year}-${month}-${today}`
+
+// const date = new Date();
+// let today = date.getDate();
+// let month = date.getMonth() + 1;
+// let year = date.getFullYear()
+// const dateString = `${year}-${month}-${today}`
 
 export const options = {
 	title: "Выберите дату",

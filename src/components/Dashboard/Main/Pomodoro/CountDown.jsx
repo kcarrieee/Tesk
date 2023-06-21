@@ -1,31 +1,29 @@
 import React from 'react';
 import { useContext } from 'react';
-import {CountdownCircleTimer} from 'react-countdown-circle-timer';
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { PomodoroContext } from '../../../../context/PomodoroContext';
 
-const CountDown = ({key, timer, animate, children}) => {
+
+const CountDown = ({keyProp, timer, animate, children}) => {
 
     const { stopAimate } = useContext(PomodoroContext);
+
 
   return (
     <>
      <CountdownCircleTimer
-        key={key}
+        key={keyProp}
         isPlaying={animate}
         duration={timer * 60}
-        colors={[
-          ['#111111', 0.33],
-          ['#111111', 0.33],
-          ['#111111', 0.33],
-        ]}
+        colors='#111111'
         strokeWidth={6}
-        size={220}
-        trailColor="#fff"
+        size={150}
+        trailColor="#ffffff"
         onComplete={ () => {
           stopAimate()
         }}
       >
-        {children}
+           {children}
       </CountdownCircleTimer>
     </>
   )

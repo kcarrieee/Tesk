@@ -24,7 +24,9 @@
     padding-inline: 19px;
     position: relative;
     overflow-y: scroll;
-
+    @media screen and (min-width: 1800px) {
+        padding-right: 70px;
+    }
 }
 
 .large__addBtn {

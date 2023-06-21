@@ -37,6 +37,9 @@
 }
 
 @media (max-width: 850px) {
+    .margin {
+        margin-top: 30px;
+    }
 
     .projects {
         grid-template-columns: auto;

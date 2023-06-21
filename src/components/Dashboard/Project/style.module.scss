@@ -49,7 +49,14 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    
 }
+@media screen and (max-width: 500px) {
+    .heading_icons_wrapper {
+            display: none;
+    }
+}
+
 
 .projectPage_content {
     background-color: white;
@@ -269,17 +276,32 @@
     top: 0;
     right: 0;
     bottom: 0;
-    left: 97px;
+    left: 86px;
     display: grid;
     place-content: center;
+    @media screen and (max-width: 980px) {
+            left: 0;
+    }
+    @media screen and (min-width: 1880px) {
+        left: 97px;
+    }
 
     form {
         background-color: white;
         border-radius: 20px;
         padding: 30px;
-        // width: 100%;
+        
         max-width: 650px;
-        margin-right: -97px;
+        margin-right: -86px;
+        @media screen and (max-width: 980px) {
+                max-width: 100%;
+                margin-inline: auto;
+        
+            }
+        
+            @media screen and (max-width: 580px) {
+                padding: 20px
+            }
         input {
             margin-bottom: 20px;
             
@@ -290,6 +312,8 @@
         }
     }
 }
+ 
+
 
 .add_task_header {
     display: flex;
@@ -424,4 +448,8 @@
     path {
         fill: #000;
     }
+}
+.add_task_btn {
+    cursor: pointer;
+
 }

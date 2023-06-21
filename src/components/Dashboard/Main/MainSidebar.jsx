@@ -45,9 +45,8 @@ const MainSidebar = () => {
     const [openProjects, setOpenProjects] = useState(false);
     const [openTasks, setOpenTasks] = useState(false);
     const [projects, setProjects] = useState(null);
+    // eslint-disable-next-line
     const [tasks, setTasks] = useState(null);
-    
-    console.log(projects)
 
     useEffect(() => {
       const fetchPrj = async () => {
@@ -65,18 +64,20 @@ const MainSidebar = () => {
 
           setProjects(prj)
           
-      
-         
-          // let t= []
-          // const Ref = collection(db, 'projects', id, 'tasks')
+        //   let t= []
+        // const prjId = projects.map(project => (
+        //   project.id
+        //  ))
           
-          // const data = await getDocs(Ref) 
-          // data.forEach((doc) => {
-          //   return t.push({
-          //     data: doc.data(),
-          //   })
-          // })
-          // setTasks(t);
+        //   const Ref = collection(db, 'projects', prjId , 'tasks')
+          
+        //   const data = await getDocs(Ref) 
+        //   data.forEach((doc) => {
+        //     return t.push({
+        //       data: doc.data(),
+        //     })
+        //   })
+        //   setTasks(t);
       }
     fetchPrj();
     }, [])
@@ -86,7 +87,7 @@ const MainSidebar = () => {
     const usersProjects = projects?.filter(document => user.uid === document.data.createdBy.id
       // (document.data.assignedUsersList.forEach((u) => (user.uid === u.id || user.uid === document.data.createdBy.id)))
       )
-
+    
 
 
   return (
@@ -123,8 +124,8 @@ const MainSidebar = () => {
         <div>
             <h3>Задачи</h3> 
             <div className={style.num}>
-            {/* {tasks?.length === null || 0 ? "0" : tasks?.length} */}
-            13
+           
+            0
             </div>
         </div>
         <svg onClick={() => setOpenTasks(!openTasks)}
@@ -141,8 +142,8 @@ const MainSidebar = () => {
                 animate='show'
                 exit='hidden'
                 >
-                   <motion.li  variants={variantsLi} >Новые(12)</motion.li>
-                  <motion.li  variants={variantsLi} >Завершенные(1)</motion.li> 
+                  <motion.li  variants={variantsLi} >Новые(0)</motion.li>
+                  <motion.li  variants={variantsLi} >Завершенные(0)</motion.li> 
             </motion.ul>
         )}
     </div>

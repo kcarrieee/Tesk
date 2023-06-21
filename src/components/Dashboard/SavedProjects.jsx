@@ -7,6 +7,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase.config';
 import { getAuth } from 'firebase/auth';
 import Spinner from '../../components/Shared/Preloader/Spinner';
+import uuid from 'react-uuid';
 
 const SavedProjects = () => {
 
@@ -16,8 +17,6 @@ const SavedProjects = () => {
   const [searchValue, setSearchValue] = useState('');
   const [currentFilter, setCurrentFilter] = useState("дате");
   
-  
-
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -35,8 +34,8 @@ const SavedProjects = () => {
             })
           })
 
-          setProjects(prj)
-          setLoading(false)
+          setProjects(prj);
+          setLoading(false);
       }
 
         fetchPrj();
@@ -45,7 +44,17 @@ const SavedProjects = () => {
     if (loading) {
         return <Spinner />
     }
-    const savedProjects = projects.filter(project => project.data.isImportant === true)
+    const sortProjects = projects?.filter((document) => {
+            let assignedToMe = false;
+            document.data.assignedUsersList.forEach((u) => {
+              if (user.uid === u.id || user.uid === document.data.createdBy.id) {
+                assignedToMe = true;
+              }
+              return assignedToMe
+            });
+            return assignedToMe
+    });
+    const savedProjects = sortProjects.filter(project => project.data.isImportant === true)
     const sortedProjects = savedProjects.filter((document) => {
         switch (currentFilter) {
           case "дате":
@@ -65,7 +74,7 @@ const SavedProjects = () => {
           case "3":
           case "4":
           case "5":
-            return document.data.activeTheme == currentFilter;
+            return document.data.activeTheme.toString() === currentFilter;
 
           default:
             return true;
@@ -84,9 +93,10 @@ const SavedProjects = () => {
                 <div className={styles.project_grid}>
                     {projects.filter(el => el.data.isImportant === true).length !== 0 ? (
                       sortedProjects.filter(el => el.data.name.toLowerCase().includes(searchValue.toLowerCase())).map((project) => {
-                          return <ProjectItem project={project}/>
+                          return <ProjectItem project={project} key={uuid()}/>
                       })
                     ) : <p>У вас пока что нет важных проектов.</p>}
+                    { sortProjects.length === 0 && (<p>У вас пока что нет важных проектов.</p>)}
                 </div>
         </div>
     </div>

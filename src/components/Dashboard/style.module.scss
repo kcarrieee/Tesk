@@ -7,7 +7,13 @@
     left: 86px;
     display: grid;
     place-content: center;
-    z-index: 5;
+    z-index: 10000;
+    @media screen and (max-width: 980px) {
+            left: 0;
+        }
+        @media screen and (min-width: 1880px) {
+            left: 97px;
+        }
 
     div {
         background-color: white;
@@ -15,16 +21,13 @@
         padding: 25px;
         width: 80%;
         margin-left: 97px;
-
-        svg {
-            display: flex;
-            justify-content: flex-end;
-            margin-left: auto;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            &:hover {
-                transform: scale(1.1);
-            }
+        @media screen and (max-width: 980px) {
+                width: 90%;
+                margin-inline: auto;
+            
+        }
+        @media screen and (max-width: 580px) {
+                     padding: 20px
         }
 
         h3 {
@@ -48,6 +51,22 @@
             margin-inline: auto;
             margin-bottom: 40px;
             cursor: pointer;
+            @media screen and (max-width: 780px) {
+                    padding: 10px 25px;
+                    font-size: 14px;
+                }
         }
     }
+}
+.close_btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-inline: 0px !important;
+    width: 100% !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0 !important;
+    
+    
+
 }

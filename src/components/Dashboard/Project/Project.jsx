@@ -17,6 +17,7 @@ import { ru } from 'date-fns/locale';
 import { toast } from 'react-toastify';
 import Modal from './Modal';
 import uuid from 'react-uuid';
+import EditProjectPage from '../EditProject/EditProjectPage';
 
 
 
@@ -29,6 +30,7 @@ const Project = () => {
 
     const navigate = useNavigate()
     const params = useParams()
+    const [isEdited, setIsEdited] = useState(false)
 
     
 
@@ -99,12 +101,16 @@ const Project = () => {
     
     const themes = ["дизайн", "разработка" ,"бизнес", "образование" ,"повседневные дела", "другое"]
   return (
+    <>
+    {!isEdited 
+    ? (
     <div className={styles.projectPage_wrapper}>
         <div className={styles.projectPage_header}>
             <div className={styles.projectPage_header_main}>
+                
                 <div className={styles.heading}>
-                <h1>{project.name}</h1> 
-                <Badge type={project.status}/>
+                    <h1>{project.name}</h1> 
+                    <Badge type={project.status}/>
                 </div>
                 <div className={styles.heading_desc}>
                     <p>Тематика: <span>
@@ -126,9 +132,10 @@ const Project = () => {
                             </span>
                         </span>
                     </p>
-                    <p>Дата окончания: <span>{format(new Date(project.dueDate.toDate().toDateString()), 'PPPP', { locale: ru })}</span></p>
+                    <p>Дата окончания: <span>{format(new Date(project.dueDate.toDate().toDateString()), 'PP', { locale: ru })}</span></p>
                 </div>
             </div>
+         
             <div className={styles.heading_icons}>
                 {user.uid === project.createdBy.id && (
                     <>
@@ -136,11 +143,12 @@ const Project = () => {
                     <Heart 
                         className={project.isImportant === true ? styles.heart_active : styles.heart_disabled}/>
                     </div>
-                    <Edit/>
+                    <Edit onClick={()=> setIsEdited(true)}/>
                     <Delete onClick={() => setIsModalOpen(true)}/>
                     </> 
                 )}
             </div>
+            
         </div>
         {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} handleDelete={handleDelete}/> }
 
@@ -170,7 +178,10 @@ const Project = () => {
             </div>
             <Tasks  prj={project}/>
         </div>
-    </div>
+    </div> 
+    ) 
+    : <EditProjectPage/>}
+    </>
   )
 }
 
