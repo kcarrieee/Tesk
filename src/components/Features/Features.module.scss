@@ -135,13 +135,21 @@
         margin-bottom: 80px;
     }
     .small_img {
-        height: 35%;
+        height: 30% !important;
         width: 100%;
-        aspect-ratio: 2/1;
+        // aspect-ratio: 2/1;
         margin-top: 80%;
     }
     .mobile {
         margin-top: -30px;
+    }
+
+}
+@media (max-width: 500px) {
+    .small_img {
+            height: 90px !important;
+            width: 100%;
+           
     }
 
 }
