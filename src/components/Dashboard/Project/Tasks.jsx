@@ -191,7 +191,7 @@ const Tasks = ({ prj }) => {
             toast.error('Не получилось удалить')
         }
     }
-
+   
   return (
      <div className={styles.tasks_section}>
                 <div className={styles.tasks_section_header}><h2>Задачи</h2> 

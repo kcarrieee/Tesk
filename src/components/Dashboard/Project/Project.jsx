@@ -9,6 +9,7 @@ import Spinner from '../../Shared/Preloader/Spinner';
 import { ReactComponent as Heart} from './icons/heart.svg';
 import { ReactComponent as Edit} from './icons/edit.svg';
 import { ReactComponent as Delete} from './icons/trash.svg';
+import profileIcon from '../Main/ProjectItem/icons/profileImage.svg';
 
 import Badge from '../../Shared/Badges/Badge';
 import Tasks from './Tasks';
@@ -125,9 +126,10 @@ const Project = () => {
                         <span>
                             <span className="flex -space-x-3.5">
                                 {project.assignedUsersList.map((el, i) => (
-                                    <img key={uuid()} className="w-8 h-8 border-2 border-white rounded-full" src={`${el.photoURL}`} alt="user"/>
+                                    <img key={uuid()} className="w-8 h-8 border-2 border-white rounded-full" src={el.photoURL ? el.photoURL : profileIcon} alt="user"/>
+                                    
                                 ))}
-                                <img className="w-8 h-8 border-2 border-white rounded-full" src={`${project.createdBy.photoURL}`} alt="user"/>
+                                <img className="w-8 h-8 border-2 border-white rounded-full" src={`${project.createdBy.photoURL ? project.createdBy.photoURL : profileIcon}`} alt="creator"/>
                                 <span className="text-white flex items-center justify-center w-8 h-8 text-xs font-regular bg-black border-2 border-white rounded-full ">{project.assignedUsersList.length + 1}</span>
                             </span>
                         </span>

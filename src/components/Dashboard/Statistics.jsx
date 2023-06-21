@@ -131,10 +131,10 @@ const Statistics = () => {
                          <p className={styles.task_desc}>
                           в приложении Tesk - это описание того, что будет достигнуто, частные результаты, этапы на пути к цели. 
                          </p>
-                        <ul className={styles.tasks}>
+                        {/* <ul className={styles.tasks}>
                           <li>Новые - 12</li>
                           <li>Завершенные - 1</li>
-                        </ul>
+                        </ul> */}
                       </div>
                       </div>
                       

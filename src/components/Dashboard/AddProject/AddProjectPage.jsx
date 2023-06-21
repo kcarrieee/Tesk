@@ -19,7 +19,7 @@ import makeAnimated from 'react-select/animated';
       ...base,
       boxShadow: "none",
       outline: state.isFocused && state.isSelected ? 'none' : '',
-      height: 42,
+      height: '100%',
       borderRadius: 8,
     
     })
@@ -227,7 +227,7 @@ const AddProjectPage = () => {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                         autoComplete="off"
-                        className="focus:ring-0 mt-1 block w-1/2 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-black  sm:text-sm"
+                        className="focus:ring-0 mt-1 block w-1/2 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-black  text-xs md:text-sm"
                       >
                         <option value='new'>Новый</option>
                         <option value='process' >В процессе</option>
